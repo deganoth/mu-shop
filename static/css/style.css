@@ -1,0 +1,30 @@
+body {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+}
+
+main {
+	flex: 1 0 auto;
+}
+
+#main-nav-background{
+	background-color: #004D40;
+}
+
+#main-nav{
+	box-shadow: none;
+}
+
+#main-nav-search{
+	background-color: #004D40;
+}
+
+#search-nav{
+	box-shadow: none;
+}
+
+.list-item-style{
+	display: inline-block;
+	margin-right: 3px;
+}
