@@ -7,7 +7,19 @@
 {% block content %}
 <div class="container">
 	<div class="row">
-		<p>{{ profile.email }}</p>
+		<div class="col s12">
+			<p>{{ profile.username }}</p>
+		</div>
+		<div class="col s12">
+			<p>{{ profile.first_name }}</p>
+		</div>
+		<div class="col s12">
+			<p>{{ profile.last_name }}</p>
+		</div>
+		<div class="col s12">
+			<p>{{ profile.email }}</p>
+		</div>
 	</div>
 </div>
+
 {% endblock %}
