@@ -28,10 +28,10 @@
 								<ul class="right hide-on-med-and-down">
 									<li><a href="{% url 'products' %}">All Products</a></li>
 									<li><a href="{% url 'guitars' %}">Guitars</a></li>
-									<li><a href="#">Amps</a></li>
-									<li><a href="#">Drums</a></li>
+									<li><a href="{% url 'amps' %}">Amps</a></li>
+									<li><a href="{% url 'drums' %}">Drums</a></li>
 									<li><a href="{% url 'keys' %}">Keys</a></li>
-									<li><a href="#">Studio</a></li>
+									<li><a href="{% url 'studio' %}">Studio</a></li>
 									{% if user.is_authenticated %}
 									<li><a href="{% url 'profile' %}"><i class="material-icons left">person</i>Profile</a></li>
 									<li><a href="{% url 'logout' %}"><i class="fa fa-sign-out fa-lg left"></i>Logout</a></li>
@@ -69,11 +69,11 @@
 				</a></li>
 				<li><a href="{% url 'products' %}"><i class="material-icons left">store</i>All Products</a>
 					<ul>
-						<li><a href="#"><i class="material-icons">keyboard_arrow_right</i>Guitars</a></li>
-						<li><a href="#"><i class="material-icons">keyboard_arrow_right</i>Amps</a></li>
-						<li><a href="#"><i class="material-icons">keyboard_arrow_right</i>Drums</a></li>
-						<li><a href="#"><i class="material-icons">keyboard_arrow_right</i>Keys</a></li>
-						<li><a href="#"><i class="material-icons">keyboard_arrow_right</i>Studio</a></li>
+						<li><a href="{% url 'guitars' %}"><i class="material-icons">keyboard_arrow_right</i>Guitars</a></li>
+						<li><a href="{% url 'amps' %}"><i class="material-icons">keyboard_arrow_right</i>Amps</a></li>
+						<li><a href="{% url 'drums' %}"><i class="material-icons">keyboard_arrow_right</i>Drums</a></li>
+						<li><a href="{% url 'keys' %}"><i class="material-icons">keyboard_arrow_right</i>Keys</a></li>
+						<li><a href="{% url 'studio' %}"><i class="material-icons">keyboard_arrow_right</i>Studio</a></li>
 					</ul>								
 				</li>
 			</ul>
