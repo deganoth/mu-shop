@@ -12,13 +12,7 @@
 	<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-	<script>
-		$(document).ready(function(){
-			$('.sidenav').sidenav();
-			$('.collapsible').collapsible();
-			$(".dropdown-trigger").dropdown();
-		});
-	</script>
+	<script src="{% static 'js/materialize_initialize_script.js' %}"></script>
 	<title>Shop|Test</title>
 </head>
 <body>
@@ -29,23 +23,27 @@
 					<div class="row">
 						<div class="col s12 teal darken-4">
 							<div class="nav-wrapper">
-								<a href="basic_html_boilerplate.html" class="brand-logo"><i class="fa fa-lg fa-music" aria-hidden="true"></i>MuShop</a>
+								<a href="{% url 'index' %}" class="brand-logo"><i class="fa fa-music" aria-hidden="true"></i>MuShop</a>
 								<a href="#" data-target="popout-menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 								<ul class="right hide-on-med-and-down">
-									<li><a href="products_html_boilerplate.html">All Products</a></li>
-									<li><a href="#">Guitars</a></li>
+									<li><a href="{% url 'products' %}">All Products</a></li>
+									<li><a href="{% url 'guitars' %}">Guitars</a></li>
 									<li><a href="#">Amps</a></li>
 									<li><a href="#">Drums</a></li>
-									<li><a href="#">Keys</a></li>
+									<li><a href="{% url 'keys' %}">Keys</a></li>
 									<li><a href="#">Studio</a></li>
 									{% if user.is_authenticated %}
 									<li><a href="{% url 'profile' %}"><i class="material-icons left">person</i>Profile</a></li>
-									<li><a href="{% url 'logout' %}"><i class="material-icons left">person_add</i>Logout</a></li>
+									<li><a href="{% url 'logout' %}"><i class="fa fa-sign-out fa-lg left"></i>Logout</a></li>
 									{% else %}
-									<li><a href="{% url 'login' %}"><i class="material-icons left">person</i>Login</a></li>
+									<li><a href="{% url 'login' %}"><i class="fa fa-sign-in fa-lg left"></i>Login</a></li>
 									<li><a href="{% url 'registration' %}"><i class="material-icons left">person_add</i>Register</a></li>
 									{% endif %}
-									<li><a href="cart_html_boilerplate.html"><i class="material-icons left">shopping_cart</i>Cart</a></li>
+									<li><a href="{% url 'view_cart' %}"><i class="material-icons left">shopping_cart</i>Cart
+										{% if product_count > 0 %}
+										<span class="new badge" data-badge-caption="">{{ product_count }}</span>
+										{% endif %}
+									</a></li>
 								</ul>
 							</div>
 						</div>	
@@ -56,16 +54,20 @@
 
 			<!--Side navigation menu-->
 			<ul class="sidenav" id="popout-menu">
-				<li><a href="basic_html_boilerplate.html"><i class="material-icons left">home</i>Home</a></li>
+				<li><a href="{% url 'index' %}"><i class="material-icons left">home</i>Home</a></li>
 				{% if user.is_authenticated %}
-				<li><a href="login_html_boilerplate.html"><i class="material-icons left">person</i>Profile</a></li>
-				<li><a href="form_html_boilerplate.html"><i class="material-icons left">person_add</i>Logout</a></li>
+				<li><a href="{% url 'profile' %}"><i class="material-icons left">person</i>Profile</a></li>
+				<li><a href="{% url 'logout' %}"><i class="material-icons left">person_add</i>Logout</a></li>
 				{% else %}
-				<li><a href="login_html_boilerplate.html"><i class="material-icons left">person</i>Login</a></li>
-				<li><a href="form_html_boilerplate.html"><i class="material-icons left">person_add</i>Register</a></li>
+				<li><a href="{% url 'login' %}"><i class="material-icons left">person</i>Login</a></li>
+				<li><a href="{% url 'registration' %}"><i class="material-icons left">person_add</i>Register</a></li>
 				{% endif %}
-				<li><a href="cart_html_boilerplate.html"><i class="material-icons left">shopping_cart</i>Cart</a></li>
-				<li><a href="#"><i class="material-icons left">store</i>All Products</a>
+				<li><a href="{% url 'view_cart' %}"><i class="material-icons left">shopping_cart</i>Cart
+					{% if product_count > 0 %}
+					<span class="new badge" data-badge-caption="items added">{{ product_count }}</span>	
+					{% endif %}
+				</a></li>
+				<li><a href="{% url 'products' %}"><i class="material-icons left">store</i>All Products</a>
 					<ul>
 						<li><a href="#"><i class="material-icons">keyboard_arrow_right</i>Guitars</a></li>
 						<li><a href="#"><i class="material-icons">keyboard_arrow_right</i>Amps</a></li>
@@ -81,61 +83,60 @@
 					<div class="row">
 						<div class="col s12">
 							<div class="nav-wrapper">
-								<form>
-									<div class="input-field" id="main-nav-search">
-										<input id="search-bar" type="search" required>
+								<form action="{% url 'search' %}" method="get">
+									<div class="input-field" id="main-nav-search" >
+										<input id="search-bar" type="search" name="results" required>
 										<label class="label-icon" for="search" ><i id="search-icon" class="material-icons">search</i></label>
 										<i class="material-icons">close</i>
 									</div>
 								</form>
 							</div>
 						</div>
-					</div>
-				</nav>
-			</div>
-		</div>
-	</header>
-	<main>
-		<div class="container">
-			<div class="row">
-				{% if messages %}
-				<div>
-					{% for message in messages %}
-					{{ message }}
-					{% endfor %}
-				</div>
-				{% endif %}
-				{% block content %}{% endblock %}
-			</div>
-		</div>
-	</main>
-	<footer class="page-footer teal darken-4">
-		<div class="container">
-			<div class="row">
-				<div class="col xl8 l8 m8 s12">
-					<h5 class="white-text">Payment & Security</h5>
-					<p class="grey-text text-lighten-4">We use Stripe for secure payments.</p>
-					<p><i class="fa fa-4x fa-cc-stripe" aria-hidden="true"></i></p>
-					
-				</div>
-				<div class="col xl4 l4 m4 s12">
-					<h5 class="white-text">Stay up to date</h5>
-					<ul>
-						<li class="list-item-style"><a class="grey-text text-lighten-3" href="#!"><i class="fa fa-2x fa-facebook" aria-hidden="true"></i></a></li>
-						<li class="list-item-style"><a class="grey-text text-lighten-3" href="#!"><i class="fa fa-2x fa-twitter" aria-hidden="true"></i></a></li>
-						<li class="list-item-style"><a class="grey-text text-lighten-3" href="#!"><i class="fa fa-2x fa-instagram" aria-hidden="true"></i></a></li>
-						<li class="list-item-style"><a class="grey-text text-lighten-3" href="#!"><i class="fa fa-2x fa-youtube-play" aria-hidden="true"></i></a></li>
-						<li class="list-item-style"><a class="grey-text text-lighten-3" href="#!"><i class="fa fa-2x fa-envelope-o" aria-hidden="true"></i></a></li>
-					</ul>
+					</nav>
 				</div>
 			</div>
-		</div>
-		<div class="footer-copyright">
+		</header>
+		<main>
 			<div class="container">
-				© 2020 Oliver Deegan
-				<a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+				<div class="row">
+					{% if messages %}
+					<div>
+						{% for message in messages %}
+						{{ message }}
+						{% endfor %}
+					</div>
+					{% endif %}
+					{% block content %}{% endblock %}
+				</div>
 			</div>
-		</div>
-	</footer>
-</body>
-</html>
+		</main>
+		<footer class="page-footer teal darken-4">
+			<div class="container">
+				<div class="row">
+					<div class="col xl8 l8 m8 s12">
+						<h5 class="white-text">Payment & Security</h5>
+						<p class="grey-text text-lighten-4">We use Stripe for secure payments.</p>
+						<p><i class="fa fa-4x fa-cc-stripe" aria-hidden="true"></i></p>
+
+					</div>
+					<div class="col xl4 l4 m4 s12">
+						<h5 class="white-text">Stay up to date</h5>
+						<ul>
+							<li class="list-item-style"><a class="grey-text text-lighten-3" href="#!"><i class="fa fa-2x fa-facebook" aria-hidden="true"></i></a></li>
+							<li class="list-item-style"><a class="grey-text text-lighten-3" href="#!"><i class="fa fa-2x fa-twitter" aria-hidden="true"></i></a></li>
+							<li class="list-item-style"><a class="grey-text text-lighten-3" href="#!"><i class="fa fa-2x fa-instagram" aria-hidden="true"></i></a></li>
+							<li class="list-item-style"><a class="grey-text text-lighten-3" href="#!"><i class="fa fa-2x fa-youtube-play" aria-hidden="true"></i></a></li>
+							<li class="list-item-style"><a class="grey-text text-lighten-3" href="#!"><i class="fa fa-2x fa-envelope-o" aria-hidden="true"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="footer-copyright">
+				<div class="container">
+					© 2020 Oliver Deegan
+					<a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+				</div>
+			</div>
+		</footer>
+	</body>
+	</html>

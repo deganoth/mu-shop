@@ -8,6 +8,10 @@ main {
 	flex: 1 0 auto;
 }
 
+.container {
+    width: 85%;
+}
+
 #main-nav-background{
 	background-color: #004D40;
 }
@@ -27,4 +31,12 @@ main {
 .list-item-style{
 	display: inline-block;
 	margin-right: 3px;
+}
+
+span.badge.new{
+	font-size:inherit;
+}
+
+nav ul a span.badge{
+	display:inline;
 }

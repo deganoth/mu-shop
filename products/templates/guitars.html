@@ -1,0 +1,35 @@
+{% extends "base.html" %} {% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            <h4>All Guitars</h4>
+            {% for product in guitars %}
+            <div class="card horizontal">
+                <div class="card-image">
+                    <img class="activator" src="{{MEDIA_URL}}{{ product.image }}">
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content card-top-head">    
+                        <h5 class="title-item-style">{{ product.name }}</h5>
+                        <h5 class="price-item-style">{{ product.price }}</h5>
+                        <p>{{ product.description }}</p>    
+                    </div>
+                    <div class="card-action">
+                        <form method="post" action="{% url 'add_to_cart' product.id %}">
+                            {% csrf_token %}
+                            <div class="input-group">
+                                <input name="quantity" type="number" min="1" max="999" class="form-control" placeholder="Quantity">
+                                <span class="input-group-btn">
+                                    <button class="button-padding waves-effect waves-light btn-small red" type="submit"><i class="material-icons left">add_shopping_cart</i>Add</button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
