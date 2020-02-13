@@ -3,11 +3,13 @@ from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from accounts.forms import UserLoginForm, UserRegistrationForm
+from products.models import Product
 
 # Create your views here.
 def index(request):
 	""" Return the index.html file """
-	return render(request, 'index.html')
+	products = Product.objects.all()
+	return render(request, 'index.html', {'products': products})
 
 @login_required
 def logout(request):

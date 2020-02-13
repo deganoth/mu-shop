@@ -69,62 +69,20 @@
 		</div>
 	</div>
 	<div class="row">
+		{% for product in products %}
 		<div class="col xl3 l m6">
-
 			<div class="card">
 				<div class="card-image">
-					<img src="{{MEDIA_URL}}{{ 'images/narrow_banner.png' }}">
+					<img src="{{MEDIA_URL}}{{ product.image }}">
 				</div>
 				<div class="card-content">
-					<span class="card-title grey-text text-darken-4">Product Name</span>
-
-					<span><p>$1500<a class="btn-floating halfway-fab right waves-effect waves-light red"><i class="material-icons right">add_shopping_cart</i></a></p></span>
+					<span id="card-title-mod" class="card-title grey-text text-darken-4">{{ product.name }}</span>
+					<span><p>{{ product.price }}<a class="btn-floating halfway-fab right waves-effect waves-light red"><i class="fa fa-external-link" aria-hidden="true"></i></i></a></p></span>
 				</div>
 			</div>
 		</div>
-
-		<div class="col xl3 l6 m6">
-			<div class="card">
-				<div class="card-image">
-					<img src="{{MEDIA_URL}}{{ 'images/narrow_banner.png' }}">
-
-				</div>
-				<div class="card-content">
-					<span class="card-title grey-text text-darken-4">Product Name</span>
-
-					<span><p>$1500<a class="btn-floating halfway-fab right waves-effect waves-light red"><i class="material-icons right">add_shopping_cart</i></a></p></span>
-				</div>
-			</div>
-		</div>
-
-		<div class="col xl3 l6 m6">
-			<div class="card">
-				<div class="card-image">
-					<img src="{{MEDIA_URL}}{{ 'images/narrow_banner.png' }}">
-
-				</div>
-				<div class="card-content">
-					<span class="card-title grey-text text-darken-4">Product Name</span>
-
-					<span><p>$1500<a class="btn-floating halfway-fab right waves-effect waves-light red"><i class="material-icons right">add_shopping_cart</i></a></p></span>
-				</div>
-			</div>
-		</div>
-
-		<div class="col xl3 l6 m6">
-			<div class="card">
-				<div class="card-image">
-					<img src="{{MEDIA_URL}}{{ 'images/narrow_banner.png' }}">
-
-				</div>
-				<div class="card-content">
-					<span class="card-title grey-text text-darken-4">Product Name</span>
-
-					<span><p>$1500<a class="btn-floating halfway-fab right waves-effect waves-light red"><i class="material-icons right">add_shopping_cart</i></a></p></span>
-				</div>
-			</div>
-		</div>
-
+		{% endfor %}
+		
 	</div>
 </div>
 {% endblock %}

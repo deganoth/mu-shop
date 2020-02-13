@@ -49,7 +49,6 @@
 						</div>	
 					</div>
 				</nav>
-				
 			</div>
 
 			<!--Side navigation menu-->
@@ -80,63 +79,61 @@
 
 			<div class="col xl2 l12 m12 s12">
 				<nav id="search-nav">
-					<div class="row">
-						<div class="col s12">
-							<div class="nav-wrapper">
-								<form action="{% url 'search' %}" method="get">
-									<div class="input-field" id="main-nav-search" >
-										<input id="search-bar" type="search" name="results" required>
-										<label class="label-icon" for="search" ><i id="search-icon" class="material-icons">search</i></label>
-										<i class="material-icons">close</i>
-									</div>
-								</form>
+					<div class="nav-wrapper">
+						<form action="{% url 'search' %}" method="get">
+							<div class="input-field" id="main-nav-search" >
+								<input id="search-bar" type="search" name="results" required>
+								<label class="label-icon" for="search" ><i id="search-icon" class="material-icons">search</i></label>
+								<i class="material-icons">close</i>
 							</div>
-						</div>
-					</nav>
-				</div>
-			</div>
-		</header>
-		<main>
-			<div class="container">
-				<div class="row">
-					{% if messages %}
-					<div>
-						{% for message in messages %}
-						{{ message }}
-						{% endfor %}
+						</form>
 					</div>
-					{% endif %}
-					{% block content %}{% endblock %}
-				</div>
-			</div>
-		</main>
-		<footer class="page-footer teal darken-4">
-			<div class="container">
-				<div class="row">
-					<div class="col xl8 l8 m8 s12">
-						<h5 class="white-text">Payment & Security</h5>
-						<p class="grey-text text-lighten-4">We use Stripe for secure payments.</p>
-						<p><i class="fa fa-4x fa-cc-stripe" aria-hidden="true"></i></p>
 
-					</div>
-					<div class="col xl4 l4 m4 s12">
-						<h5 class="white-text">Stay up to date</h5>
-						<ul>
-							<li class="list-item-style"><a class="grey-text text-lighten-3" href="#!"><i class="fa fa-2x fa-facebook" aria-hidden="true"></i></a></li>
-							<li class="list-item-style"><a class="grey-text text-lighten-3" href="#!"><i class="fa fa-2x fa-twitter" aria-hidden="true"></i></a></li>
-							<li class="list-item-style"><a class="grey-text text-lighten-3" href="#!"><i class="fa fa-2x fa-instagram" aria-hidden="true"></i></a></li>
-							<li class="list-item-style"><a class="grey-text text-lighten-3" href="#!"><i class="fa fa-2x fa-youtube-play" aria-hidden="true"></i></a></li>
-							<li class="list-item-style"><a class="grey-text text-lighten-3" href="#!"><i class="fa fa-2x fa-envelope-o" aria-hidden="true"></i></a></li>
-						</ul>
-					</div>
+				</nav>
+			</div>
+		</div>
+	</header>
+	<main>
+		<div class="container">
+			<div class="row">
+				{% if messages %}
+				<div>
+					{% for message in messages %}
+					{{ message }}
+					{% endfor %}
+				</div>
+				{% endif %}
+				{% block content %}{% endblock %}
+			</div>
+		</div>
+	</main>
+	<footer class="page-footer teal darken-4">
+		<div class="container">
+			<div class="row">
+				<div class="col xl8 l8 m8 s12">
+					<h5 class="white-text">Payment & Security</h5>
+					<p class="grey-text text-lighten-4">We use Stripe for secure payments.</p>
+					<p><i class="fa fa-4x fa-cc-stripe" aria-hidden="true"></i></p>
+
+				</div>
+				<div class="col xl4 l4 m4 s12">
+					<h5 class="white-text">Stay up to date</h5>
+					<ul>
+						<li class="list-item-style"><a class="grey-text text-lighten-3" href="#!"><i class="fa fa-2x fa-facebook" aria-hidden="true"></i></a></li>
+						<li class="list-item-style"><a class="grey-text text-lighten-3" href="#!"><i class="fa fa-2x fa-twitter" aria-hidden="true"></i></a></li>
+						<li class="list-item-style"><a class="grey-text text-lighten-3" href="#!"><i class="fa fa-2x fa-instagram" aria-hidden="true"></i></a></li>
+						<li class="list-item-style"><a class="grey-text text-lighten-3" href="#!"><i class="fa fa-2x fa-youtube-play" aria-hidden="true"></i></a></li>
+						<li class="list-item-style"><a class="grey-text text-lighten-3" href="#!"><i class="fa fa-2x fa-envelope-o" aria-hidden="true"></i></a></li>
+					</ul>
 				</div>
 			</div>
-			<div class="footer-copyright">
-				<div class="container">
-					© 2020 Oliver Deegan
-					<a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-				</div>
+		</div>
+		<div class="footer-copyright">
+			<div class="container">
+				© 2020 Oliver Deegan
+				<a class="grey-text text-lighten-4 right" href="#!">More Links</a>
 			</div>
-		</footer>
-	</body>
-	</html>
+		</div>
+	</footer>
+</body>
+</html>
