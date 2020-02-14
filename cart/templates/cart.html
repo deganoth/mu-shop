@@ -3,39 +3,53 @@
 {% load bootstrap_tags %} 
 
 {% block content %}
-<div class="row row-flex">
-    {% for item in cart_items %}
-    <div class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6 col-md-4 display panel panel-display">
-        <img src="{{MEDIA_URL}}{{ item.product.image }}">
-       
-        <div class="caption">
-            <h3>{{ item.product.name }}</h3>
-            <p class="product-description">{{ item.product.description }}</p>
-            <p>{{ item.product.price }}</p>
-            <p>
-                <form class="form-inline" method="post" action="{% url 'adjust_cart' item.id %}">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label for="exampleInputAmount" class="sr-only">New Qty</label>
-                        <div class="input-group">
-                            <div class="input-group-addon">Qty</div>
-                            <input name="quantity" type="number" min="0" max="999" class="form-control">
-                            <div class="input-group-addon">{{ item.quantity }}</div>
-                        </div>
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            <h4>Shopping Cart</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Qty</th>
+                            <th>Change Qty</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in cart_items %}
+                        <tr>
+                            <td>{{ item.product.name }}</td>
+                            <td>{{ item.product.price }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>
+                                <form class="form-inline" method="post" action="{% url 'adjust_cart' item.id %}">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label for="exampleInputAmount" class="sr-only">New Qty</label>
+                                        <div class="col xl8 l6 m6 s12 input-group">
+                                            <input name="quantity" min="0" max="999" class="form-control">
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">
+                                        <span class="glyphicon glyphicon-edit" aria-hiddne="true">Update</span>
+                                    </button>
+                                </form>
+                            </td>   
+                        </tr>
+                        {% endfor %}
+                    </tbody> 
+                </table> 
+                <div class="row">
+                    <div class="col s12">
+                        <p>Total</p>
+                        <p><span class="glyphicon glyphicon-euro" aria-hidden="true"></span>{{ total }}</p>
+                        <a href="#" class="btn btn-success" role="button"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span><i class="material-icons right">done</i>Checkout</a>
                     </div>
-                    <button type="submit" class="btn btn-primary">
-                        <span class="glyphicon glyphicon-edit" aria-hiddne="true">Amend</span>
-                    </button>
-                </form>
-            </p>
+                </div>
+            </div>
         </div>
     </div>
-    {% endfor %}
 </div>
 
-<div class="row">
-    <p>Total</p>
-    <p><span class="glyphicon glyphicon-euro" aria-hidden="true"></span>{{ total }}</p>
-    <a href="{% url 'checkout' %}" class="btn btn-success" role="button"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Checkout</a>
-</div>
 {% endblock %}
