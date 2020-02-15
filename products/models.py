@@ -13,7 +13,7 @@ class Product(models.Model):
 	name = models.CharField(max_length=254, default='')
 	category = models.ForeignKey(Categorie, on_delete=models.CASCADE)
 	description = models.TextField()
-	price = MoneyField(max_digits=6, decimal_places=2, default_currency='USD')
+	price = MoneyField(max_digits=6, decimal_places=2, default_currency=None)
 	quantity = models.DecimalField(max_digits=6, decimal_places=2, default=0)
 	image = models.ImageField(upload_to='images')
 	

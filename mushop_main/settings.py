@@ -40,11 +40,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_forms_bootstrap',
+    # for updating currency i the admin panel.
     'djmoney',
+    # for accepting payments for products.
+    'stripe',
     'accounts',
     'products',
     'home',
     'cart',
+    'checkout',
 ]
 
 MIDDLEWARE = [

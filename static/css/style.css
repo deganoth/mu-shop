@@ -45,3 +45,7 @@ span.badge.new{
 nav ul a span.badge{
 	display:inline;
 }
+
+.button-margin-top{
+	margin-top: 20px;
+}
