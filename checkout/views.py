@@ -27,8 +27,8 @@ def checkout(request):
             for id, quantity in cart.items():
                 product = get_object_or_404(Product, pk=id)
                 total += quantity * product.price
-                
-                # converting total to a readable format for stripe.
+
+                # converting total to a readable format for stripe. Required for use with MoneyField.
                 x = str(total)
                 y = x.translate({ord(i): None for i in '€'})
                 z = y.translate({ord(i): None for i in ','})
