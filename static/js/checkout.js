@@ -33,15 +33,6 @@ var postalCode = elements.create('postalCode', {style: style});
 
 // IMPORTANT! target the bootstrap and django created id names and chnage them to the stripe accepted div id names.
 // Stripe id names for card elements must be in a <div> html element.  
-//document.getElementById("div_credit_card_number").setAttribute("id", "card-number")
-//document.getElementById("div_cvv").setAttribute("id", "card-cvc");
-//document.getElementById("div_expiry_details").setAttribute("id", "card-expiry");
-//document.getElementById("div_post_code").setAttribute("id", "card-post-code");
-
-// Add an instance of the card Element into the `card-element` <div>.
-// card.mount('#card-element');
-
-
 cardNumber.mount('#card-number');
 cardExpiry.mount('#card-expiry');
 cardCvc.mount('#card-cvc');

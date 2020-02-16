@@ -18,9 +18,16 @@
                         <form method="post" action="{% url 'add_to_cart' product.id %}">
                             {% csrf_token %}
                             <div class="input-group">
-                                <input name="quantity" type="number" min="1" max="999" class="form-control" placeholder="Quantity">
                                 <span class="input-group-btn">
                                     <button class="button-padding waves-effect waves-light btn-small red" type="submit"><i class="material-icons left">add_shopping_cart</i>Add</button>
+                                    <form method="post" action="{% url 'add_to_cart' product.id %}">
+                                        {% csrf_token %}
+                                        <span class="input-group">
+                                            <span class="input-group-btn">
+                                                <button class="button-padding waves-effect waves-light btn-small red" type="submit"><i class="material-icons left">compare_arrows</i>Compare</button>
+                                            </span>
+                                        </span>
+                                    </form>
                                 </span>
                             </div>
                         </form>
