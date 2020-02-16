@@ -29,6 +29,8 @@ def checkout(request):
                 total += quantity * product.price
 
                 # converting total to a readable format for stripe. Required for use with MoneyField.
+                # the translate method searches through the string for any reference of the selected symbol. 
+                # It can replace or remove this symbol.
                 x = str(total)
                 y = x.translate({ord(i): None for i in '€'})
                 z = y.translate({ord(i): None for i in ','})
@@ -42,7 +44,7 @@ def checkout(request):
                 
                 card = request.POST.get('stripe_id')
                 customer = stripe.Charge.create(
-                    amount = new_total,
+                    amount = new_total * 100,
                     currency = 'eur',
                     description = request.user.email,
                     card = card,
@@ -60,7 +62,7 @@ def checkout(request):
             print(payment_form.errors)
             messages.error(request, "We were unable to take payment with that card!")
     else:
-         payment_form = MakePaymentForm()
+         payment_form = MakePaymentForm(auto_id='%s')
          order_form = OrderForm()
  
     
