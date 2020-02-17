@@ -39,10 +39,11 @@
 									<li><a href="{% url 'login' %}"><i class="fa fa-sign-in fa-lg left"></i>Login</a></li>
 									<li><a href="{% url 'registration' %}"><i class="material-icons left">person_add</i>Register</a></li>
 									{% endif %}
+									<li><a href="#"><i class="material-icons left">compare_arrows</i>Compare</a></li>
 									<li><a href="{% url 'view_cart' %}"><i class="material-icons left">shopping_cart</i>Cart
-										{% if product_count > 0 %}
-										<span class="new badge" data-badge-caption="">{{ product_count }}</span>
-										{% endif %}
+									{% if product_count > 0 %}
+									<span class="new badge" data-badge-caption="">{{ product_count }}</span>
+									{% endif %}
 									</a></li>
 								</ul>
 							</div>

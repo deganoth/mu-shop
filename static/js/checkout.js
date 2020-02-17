@@ -38,8 +38,6 @@ cardExpiry.mount('#card-expiry');
 cardCvc.mount('#card-cvc');
 postalCode.mount('#card-post-code');
 
-
-
 // Handle real-time validation errors from the card Element.
 cardNumber && cardExpiry && cardCvc && postalCode.addEventListener('change', function(event) {
   var displayError = document.getElementById('card-errors');

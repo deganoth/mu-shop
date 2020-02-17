@@ -12,7 +12,6 @@
             <th>Name</th>
             <th>Price</th>
             <th>Qty</th>
-
           </tr>
         </thead>
         <tbody>
@@ -21,13 +20,11 @@
             <td>{{ item.product.name }}</td>
             <td>{{ item.product.price }}</td>
             <td>{{ item.quantity }}</td>
-
           </tr>
           {% endfor %}
         </tbody> 
       </table> 
     </div>
-
     <div class="row">
       <div class="col s12">
         <table>
@@ -57,27 +54,19 @@
             <p style="font-weight: bold;">Payment Details</p>
             <div class="form-row">
               <label>Card Number</label>
-              <div id="card-number">
-                {{ payment_form.credit_card_number }}
-              </div>
+              <div id="card-number"></div>
             </div>
             <div class="form-row">
               <label>Security Code (CVV)</label>
-              <div id="card-cvc">
-                {{ payment_form.cvv }}
-              </div>
+              <div id="card-cvc"></div>
             </div>
             <div class="form-row">
               <label>Expiry Date</label>
-              <div id="card-expiry">
-                {{ payment_form.expiry_details }}
-              </div>
+              <div id="card-expiry"></div>
             </div>
             <div class="form-row">
               <label>Post Code</label>
-              <div id="card-post-code">
-                {{ payment_form.post_code }}
-              </div>
+              <div id="card-post-code"></div>
             </div>
              <!-- Used to display form errors -->
             <div class="form-row">
