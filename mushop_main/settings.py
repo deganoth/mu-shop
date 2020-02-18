@@ -40,14 +40,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_forms_bootstrap',
-    # for updating currency i the admin panel.
+    # for updating currency in the admin panel.
     'djmoney',
-    # for accepting payments for products.
+    # for accepting payments for products via stripe.
     'stripe',
     'accounts',
     'products',
     'home',
     'cart',
+    'compare',
     'checkout',
 ]
 
@@ -76,6 +77,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
                 'cart.contexts.cart_contents',
+                'compare.contexts.compare_contents',
             ],
         },
     },

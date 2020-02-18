@@ -15,22 +15,26 @@
                         <p>{{ product.description }}</p>    
                     </div>
                     <div class="card-action">
-                        <form method="post" action="{% url 'add_to_cart' product.id %}">
-                            {% csrf_token %}
-                            <div class="input-group">
-                                <span class="input-group-btn">
-                                    <button class="button-padding waves-effect waves-light btn-small red" type="submit"><i class="material-icons left">add_shopping_cart</i>Add</button>
-                                    <form method="post" action="{% url 'add_to_cart' product.id %}">
-                                        {% csrf_token %}
-                                        <span class="input-group">
-                                            <span class="input-group-btn">
-                                                <button class="button-padding waves-effect waves-light btn-small red" type="submit"><i class="material-icons left">compare_arrows</i>Compare</button>
-                                            </span>
-                                        </span>
-                                    </form>
+                        <div class="col">
+                            <form method="post" action="{% url 'add_to_cart' product.id %}">
+                                {% csrf_token %}
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <button class="button-padding waves-effect waves-light btn-small red" type="submit"><i class="material-icons left">add_shopping_cart</i>Add</button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col xl10">
+                            <form method="post" action="{% url 'add_to_compare' product.id %}">
+                                {% csrf_token %}
+                                <span class="input-group">
+                                    <span class="input-group-btn">
+                                        <button class="button-padding waves-effect waves-light btn-small red" type="submit"><i class="material-icons left">compare_arrows</i>Compare</button>
+                                    </span>
                                 </span>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

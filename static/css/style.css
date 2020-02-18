@@ -9,8 +9,13 @@ main {
 	flex: 1 0 auto;
 }
 
+nav .brand-logo i, nav .brand-logo [class^="mdi-"], nav .brand-logo [class*="mdi-"], nav .brand-logo i.material-icons {
+    float: none;
+    margin-right: 0;
+}
+
 .container {
-	width: 85%;
+	width: 100%;
 }
 
 #card-title-mod{
@@ -97,3 +102,12 @@ input {
 	border-color: #fa755a;
 }
 
+@media only screen and (min-width: 993px) {
+	.small-hide {
+		display: none;
+	}
+
+	i.left{
+		margin-right: 5px;	
+	}
+}

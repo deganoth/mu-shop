@@ -23,7 +23,10 @@
 					<div class="row">
 						<div class="col s12 teal darken-4">
 							<div class="nav-wrapper">
-								<a href="{% url 'index' %}" class="brand-logo"><i class="fa fa-music" aria-hidden="true"></i>MuShop</a>
+								<a href="{% url 'index' %}" class="brand-logo">
+									<span class="music-logo">
+										<i class="fa fa-music" aria-hidden="true"></i>
+									</span>MuShop</a>
 								<a href="#" data-target="popout-menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 								<ul class="right hide-on-med-and-down">
 									<li><a href="{% url 'products' %}">All Products</a></li>
@@ -37,13 +40,18 @@
 									<li><a href="{% url 'logout' %}"><i class="fa fa-sign-out fa-lg left"></i>Logout</a></li>
 									{% else %}
 									<li><a href="{% url 'login' %}"><i class="fa fa-sign-in fa-lg left"></i>Login</a></li>
-									<li><a href="{% url 'registration' %}"><i class="material-icons left">person_add</i>Register</a></li>
+									<li><a href="{% url 'registration' %}"><i class="material-icons left">person_add</i>Register
+									</a></li>
 									{% endif %}
-									<li><a href="#"><i class="material-icons left">compare_arrows</i>Compare</a></li>
-									<li><a href="{% url 'view_cart' %}"><i class="material-icons left">shopping_cart</i>Cart
-									{% if product_count > 0 %}
-									<span class="new badge" data-badge-caption="">{{ product_count }}</span>
-									{% endif %}
+									<li><a href="{% url 'view_compare' %}"><i id="small-hide-icon" class="material-icons left">compare_arrows</i><span class="small-hide">Compare</span>
+										{% if compare_count > 0 %}
+										<span class="new badge red" data-badge-caption="">{{ compare_count }}</span>
+										{% endif %}
+									</a></li>
+									<li><a href="{% url 'view_cart' %}"><i class="material-icons left small-hide-icon">shopping_cart</i><span class="small-hide">Cart</span>
+										{% if product_count > 0 %}
+										<span class="new badge" data-badge-caption="">{{ product_count }}</span>
+										{% endif %}
 									</a></li>
 								</ul>
 							</div>
@@ -62,9 +70,14 @@
 				<li><a href="{% url 'login' %}"><i class="material-icons left">person</i>Login</a></li>
 				<li><a href="{% url 'registration' %}"><i class="material-icons left">person_add</i>Register</a></li>
 				{% endif %}
-				<li><a href="{% url 'view_cart' %}"><i class="material-icons left">shopping_cart</i>Cart
+				<li><a href="{% url 'view_compare' %}"><i id="small-hide-icon" class="material-icons left">compare_arrows</i><span class="small-hide">Compare</span>
+					{% if compare_count > 0 %}
+					<span class="new badge red" data-badge-caption="">{{ compare_count }}</span>
+					{% endif %}
+				</a></li>
+				<li><a href="{% url 'view_cart' %}"><i class="material-icons left small-hide-icon">shopping_cart</i><span class="small-hide">Cart</span>
 					{% if product_count > 0 %}
-					<span class="new badge" data-badge-caption="items added">{{ product_count }}</span>	
+					<span class="new badge" data-badge-caption="">{{ product_count }}</span>
 					{% endif %}
 				</a></li>
 				<li><a href="{% url 'products' %}"><i class="material-icons left">store</i>All Products</a>
