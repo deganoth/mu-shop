@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, reverse
+from django.contrib import messages
 
 def view_compare(request):
     """
@@ -16,24 +17,28 @@ def add_to_compare(request, id):
     
     if id in compare:
         compare[id] = 1
+        
     else:
         compare[id] = compare.get(id, quantity)
+        messages.success(request, "{} Item successfully added to compare!".format(quantity))
         
     request.session['compare'] = compare
     return redirect(reverse('products'))
     
-def adjust_compare(request, id):
+def delete_compare(request, id):
     """
     Adjust quantity of the specified product to the specified amount
     """
-    quantity = int(request.POST.get('quantity'))
+    quantity = 0
     
     compare = request.session.get('compare', {})
     
-    if quantity > 0:
+    if quantity == 1:
         compare[id] = quantity
+        
     else:
         compare.pop(id)
-        
+        messages.success(request, "Item removed successfully from compare!")
+    
     request.session['compare'] = compare
     return redirect(reverse('view_compare'))

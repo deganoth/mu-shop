@@ -5,34 +5,41 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        
+        <div class="col s12">
             <h4>Compare Products</h4>
-            {% for item in compare_items %}
-            <div class="col s6">
-                <ul class="collection with-header">
-                    <li class="collection-header"><h4>{{ item.product.name }}</h4></li>
-                    <li class="collection-item"><img class="activator" src="{{MEDIA_URL}}{{ item.product.image }}"></li>
-                    <li class="collection-item">{{ item.product.price }}</li>
-                    <li class="collection-item">{{ item.product.description }}</li>
-                    <li class="collection-item">
-                        <form method="post" action="{% url 'add_to_cart' item.product.id %}">
-                            {% csrf_token %}
-                            <div class="input-group">
-                                <span class="input-group-btn">
-                                    <button class="button-padding waves-effect waves-light btn-small red" type="submit"><i class="material-icons left">add_shopping_cart</i>Add</button>
-                                </span>
-                            </div>
-                        </form>
-                    </li>
-                </ul>
-            </div>
-            {% endfor %}
-            <div class="row">
-                <div class="col s12">
-                    <a href="{% url 'checkout' %}" class="btn waves-effect waves-light button-margin-top" role="button"></span><i class="material-icons right">done</i>Checkout</a>
-                </div>
-            </div>
+        </div>        
+        {% for item in compare_items %}
+        <div class="col xl6 s12">
+            <ul class="collection with-header">
+                <li class="collection-header"><h4>{{ item.product.name }}</h4></li>
+                <li class="collection-item"><img class="activator" src="{{MEDIA_URL}}{{ item.product.image }}"></li>
+                <li class="collection-item">{{ item.product.price }}</li>
+                <li class="collection-item">{{ item.product.description }}</li>
+                <li class="collection-item">
+                    <form class="form-buttons" method="post" action="{% url 'add_to_cart' item.product.id %}">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button class="button-padding waves-effect waves-light btn-small red" type="submit"><i class="material-icons left">add_shopping_cart</i><span class="tiny-hide">Add</span></button>
+                            </span> 
+                        </div>
+                    </form>
+                    <form class="form-buttons" method="post" action="{% url 'delete_compare' item.id %}">
+                        {% csrf_token %}    
+                        <span class="input-group">
+                            <span class="input-group-btn">
+                                <button class="button-padding waves-effect waves-light btn-small grey" type="submit"><i class="material-icons left">delete</i><span class="tiny-hide">Remove</span></button>
+                            </span>
+                        </span>
+                    </form>
+                </li>
+            </ul>
         </div>
+        {% endfor %}
+        <div class="col s12">
+            <a href="{% url 'checkout' %}" class="btn waves-effect waves-light button-margin-top" role="button"></span><i class="material-icons right">done</i>Checkout</a>
+        </div>  
+    </div>
     
 </div>
 </div>

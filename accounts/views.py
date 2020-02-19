@@ -12,7 +12,7 @@ def index(request):
 	return render(request, 'index.html', {'products': products})
 
 @login_required
-def logout(request):
+def logout(request):	
 	""" Log the user out """
 	auth.logout(request)
 	messages.success(request, "You have succcessfully been logged out!")
