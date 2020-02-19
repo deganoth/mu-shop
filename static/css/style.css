@@ -18,16 +18,18 @@ main {
 	color: #000;
 	background-color: #81d4fa;
 	border-radius: 2px;
-	padding: 0 10px;
-	 animation: message-fade 0s ease-in 5s forwards;
+	padding: 5px 10px;
+	margin: 0 10%;
+	margin-bottom: 10px;
+	animation: message-fade 0s ease-in 5s forwards;
 }
 
 @keyframes message-fade {
 	to {
 		opacity:1;
 		width:0;
-        height:0;
-        overflow:hidden;
+		height:0;
+		overflow:hidden;
 	}
 
 	to {
@@ -38,8 +40,7 @@ main {
 	}
 
 }
-
-
+	
 .container {
 	width: 100%;
 }
@@ -89,6 +90,12 @@ nav ul a span.badge{
 	width: 100%
 }
 
+
+/* compare card styling */
+.compare-image {
+	display: flex;
+}
+
 /* payment box test styling*/
 input,
 .StripeElement {
@@ -132,7 +139,7 @@ input {
 	border-color: #fa755a;
 }
 
-@media only screen and (min-width: 993px) {
+@media only screen and (max-width: 1280px) {
 	.small-hide {
 		display: none;
 	}

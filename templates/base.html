@@ -43,12 +43,12 @@
 										<li><a href="{% url 'registration' %}"><i class="material-icons left">person_add</i>Register
 										</a></li>
 										{% endif %}
-										<li><a href="{% url 'view_compare' %}"><i id="small-hide-icon" class="material-icons left">compare_arrows</i><span class="small-hide">Compare</span>
+										<li><a href="{% url 'view_compare' %}"><i class="material-icons left">compare_arrows</i><span class="small-hide">Compare</span>
 											{% if compare_count > 0 %}
 											<span class="new badge" data-badge-caption="">{{ compare_count }}</span>
 											{% endif %}
 										</a></li>
-										<li><a href="{% url 'view_cart' %}"><i class="material-icons left small-hide-icon">shopping_cart</i><span class="small-hide">Cart</span>
+										<li><a href="{% url 'view_cart' %}"><i class="material-icons left">shopping_cart</i><span class="small-hide">Cart</span>
 											{% if product_count > 0 %}
 											<span class="new badge red" data-badge-caption="">{{ product_count }}</span>
 											{% endif %}
@@ -71,14 +71,14 @@
 					<li><a href="{% url 'registration' %}"><i class="material-icons left">person_add</i>Register
 					</a></li>
 					{% endif %}
-					<li><a href="{% url 'view_compare' %}"><i id="small-hide-icon" class="material-icons left">compare_arrows</i><span class="small-hide">Compare</span>
+					<li><a href="{% url 'view_compare' %}"><i class="material-icons left">compare_arrows</i><span>Compare</span>
 						{% if compare_count > 0 %}
-						<span class="new badge red" data-badge-caption="">{{ compare_count }}</span>
+						<span class="new badge" data-badge-caption="">{{ compare_count }}</span>
 						{% endif %}
 					</a></li>
-					<li><a href="{% url 'view_cart' %}"><i class="material-icons left small-hide-icon">shopping_cart</i><span class="small-hide">Cart</span>
+					<li><a href="{% url 'view_cart' %}"><i class="material-icons left">shopping_cart</i><span>Cart</span>
 						{% if product_count > 0 %}
-						<span class="new badge" data-badge-caption="">{{ product_count }}</span>
+						<span class="new badge  red" data-badge-caption="">{{ product_count }}</span>
 						{% endif %}
 					</a></li>
 					<li><a href="{% url 'products' %}"><i class="material-icons left">store</i>All Products</a>
@@ -113,7 +113,7 @@
 				<div class="row">
 					{% if messages %}
 					<div class="col s12">
-						<div class="right user-message">
+						<div class="user-message">
 							<h6>
 								{% for message in messages %}
 								{{ message }}

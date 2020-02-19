@@ -30,7 +30,7 @@ def delete_compare(request, id):
     Adjust quantity of the specified product to the specified amount
     """
     quantity = 0
-    
+
     compare = request.session.get('compare', {})
     
     if quantity == 1:

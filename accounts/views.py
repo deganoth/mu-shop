@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from accounts.forms import UserLoginForm, UserRegistrationForm
+from django.contrib.auth.forms import UserChangeForm
+from accounts.forms import UserLoginForm, UserRegistrationForm, EditProfileForm
 from products.models import Product
 
 # Create your views here.
@@ -66,3 +67,14 @@ def user_profile(request):
 	""" The users profile page """
 	user = User.objects.get(email=request.user.email)
 	return render(request, 'profile.html', {'profile': user})
+
+def edit_profile(request):
+	if request.method == "POST":
+		form = EditProfileForm(request.POST, instance=request.user)
+
+		if form.is_valid():
+			form.save()
+			return redirect('/accounts/profile/')
+	else:
+		form = EditProfileForm(instance=request.user)
+		return render(request, 'edit_profile.html', {'form': form})

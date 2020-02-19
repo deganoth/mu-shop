@@ -8,18 +8,22 @@
 <div class="container">
 	<div class="row">
 		<div class="col s12">
-			<p>{{ profile.username }}</p>
-		</div>
-		<div class="col s12">
-			<p>{{ profile.first_name }}</p>
-		</div>
-		<div class="col s12">
-			<p>{{ profile.last_name }}</p>
-		</div>
-		<div class="col s12">
-			<p>{{ profile.email }}</p>
+			<ul class="collection with-header">
+				<li class="collection-header"><h4>Profile</h4></li>
+				<li class="collection-item"><div><span>Username - </span>{{ profile.username }}<a href="#!" class="secondary-content"></a></div></li>
+				<li class="collection-item"><div><span>First Name - </span>{{ profile.first_name }}<a href="#!" class="secondary-content"></a></div></li>
+				<li class="collection-item"><div><span>Last Name - </span>{{ profile.last_name }}<a href="#!" class="secondary-content"></a></div></li>
+				<li class="collection-item"><div><span>Email - </span>{{ profile.email }}<a href="{% url 'edit_profile' %}" class="secondary-content"></a></div></li>
+			</ul>
+			<span class="input-group-btn">
+				<a class="button-padding waves-effect waves-light btn-small" href="{% url 'edit_profile' %}"><i class="material-icons left">edit</i><span>Edit Profile</span></a>
+			</span>
+			<span class="input-group-btn">
+				<a class="button-padding waves-effect waves-light btn-small" href="{% url 'password_reset' %}"><i class="material-icons left">edit</i><span>Reset Password</span></a>
+			</span>
 		</div>
 	</div>
 </div>
 
 {% endblock %}
+
