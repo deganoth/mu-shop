@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Product
 
 # Create your views here.
@@ -25,3 +25,8 @@ def all_keys(request):
 def all_studio(request):
 	studio = Product.objects.filter(category=5)
 	return render(request, "studio.html", {'studio': studio})
+
+def view_single(request, id):
+	product = Product.objects.filter(id=id)
+	return render(request, "single.html", {'id': id, 'product': product})
+

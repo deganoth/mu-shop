@@ -49,6 +49,10 @@ main {
 	height: 60px;
 }
 
+#card-action-container {
+    padding: 16px 13px;
+}
+
 #main-nav-background{
 	background-color: #004D40;
 }

@@ -1,0 +1,59 @@
+{% extends "base.html" %} 
+{% load static from static %} 
+{% load bootstrap_tags %} 
+
+{% block content %}
+<div class="container">
+    <div class="row">    
+        {% for item in product %}
+        <div class="col xl12 s12">
+            
+            <div class="card">
+                <div class="card-content">
+                    <h5>{{ item.name }}</h5>
+                </div>
+                <div class="card-image">
+                    <div class="carousel carousel-slider center">
+                        <div class="carousel-item red white-text" href="#one!">
+                            
+                            <img src="{{MEDIA_URL}}{{ item.image }}">
+                        </div>
+                        <div class="carousel-item amber white-text" href="#two!">
+                            
+                            <img src="{{MEDIA_URL}}{{ item.image }}">
+                        </div>
+                        <div class="carousel-item green white-text" href="#three!">                           
+                            <img src="{{MEDIA_URL}}{{ item.image }}">
+                        </div>
+                        <div class="carousel-item blue white-text" href="#four!">
+                            <img src="{{MEDIA_URL}}{{ item.image }}">
+                        </div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <p>{{ item.description }}</p>
+                </div>
+                <div class="card-content">
+                    <p>{{ item.price }}</p>
+                </div>
+                <div class="card-action">
+                    <form class="form-buttons" method="post" action="{% url 'add_to_cart' item.id %}">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button class="button-padding waves-effect waves-light btn-small red" type="submit"><i class="material-icons left">add_shopping_cart</i><span>Add</span></button>
+                            </span> 
+                        </div>
+                    </form>
+                </div>    
+            </div>
+        </div>
+        {% endfor %}
+        <div class="col s12">
+            <a href="{% url 'checkout' %}" class="btn waves-effect waves-light button-margin-top" role="button"></span><i class="material-icons right">done</i>Checkout</a>
+        </div>  
+    </div>
+</div>
+
+{% endblock %}
+

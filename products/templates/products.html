@@ -1,4 +1,5 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %} 
+{% block content %}
 <div class="container">
     <div class="row">
         <div class="col s12">
@@ -10,11 +11,11 @@
                 </div>
                 <div class="card-stacked">
                     <div class="card-content card-top-head">    
-                        <h5 class="title-item-style">{{ product.name }}</h5>
+                        <a href="{% url 'single' product.id %}"><h5 class="title-item-style black-text">{{ product.name }}</h5></a>
                         <h5 class="price-item-style">{{ product.price }}</h5>
                         <p>{{ product.description }}</p>    
                     </div>
-                    <div class="card-action">
+                    <div class="card-action" id="card-action-container">
                         <div class="col">
                             <form method="post" action="{% url 'add_to_cart' product.id %}">
                                 {% csrf_token %}
@@ -34,6 +35,9 @@
                                     </span>
                                 </span>
                             </form>
+                        </div>
+                        <div class="col">
+                            
                         </div>
                     </div>
                 </div>
