@@ -11,8 +11,8 @@
                 </div>
                 <div class="card-stacked">
                     <div class="card-content card-top-head">    
-                        <a href="{% url 'single' product.id %}"><h5 class="title-item-style black-text">{{ product.name }}</h5></a>
-                        <h5 class="price-item-style">{{ product.price }}</h5>
+                        <a href="{% url 'single' product.id %}"><h5 class="title-item-style black-text"><span class="product-title">{{ product.name }}</h5></a>
+                        <h5 class="price-item-style">{{ product.price }}</h5></span>
                         <p>{{ product.description }}</p>    
                     </div>
                     <div class="card-action" id="card-action-container">

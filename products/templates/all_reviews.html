@@ -1,0 +1,27 @@
+{% extends "base.html" %} 
+{% load static from static %} 
+{% load bootstrap_tags %}
+{% block content %} 
+<div class="container">
+	<div class="row">
+		<div class="col s12">
+			<h5>Latest reviews</h5>
+			{% if latest_reviews %}
+			<div>
+				{% for review in latest_reviews %}
+				<div>
+					<h5><a href="{% url 'one_review' review.id %}">
+						{{ review.product.name }}
+					</a></h5>
+					<h6>rated {{ review.rating }} of 5 by {{ review.user_name }}</h6>
+					<p>{{ review.comment }}</p>
+				</div>
+				{% endfor %}
+			</div>
+			{% else %}
+			<p>No reviews are available.</p>
+			{% endif %}
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -10,7 +10,7 @@
                 </div>
                 <div class="card-stacked">
                     <div class="card-content card-top-head">    
-                         <a href="{% url 'single' product.id %}"><h5 class="title-item-style black-text">{{ product.name }}</h5></a>
+                         <a href="{% url 'single' product.id %}"><h5 class="title-item-style black-text"><span class="product-title">{{ product.name }}</span></h5></a>
                         <h5 class="price-item-style">{{ product.price }}</h5>
                         <p>{{ product.description }}</p>    
                     </div>

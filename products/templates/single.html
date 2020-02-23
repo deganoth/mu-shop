@@ -1,13 +1,12 @@
 {% extends "base.html" %} 
 {% load static from static %} 
 {% load bootstrap_tags %} 
-
 {% block content %}
 <div class="container">
     <div class="row">    
         {% for item in product %}
         <div class="col xl12 s12">
-            
+
             <div class="card">
                 <div class="card-content">
                     <h5>{{ item.name }}</h5>
@@ -15,18 +14,18 @@
                 <div class="card-image">
                     <div class="carousel carousel-slider center">
                         <div class="carousel-item red white-text" href="#one!">
-                            
-                            <img src="{{MEDIA_URL}}{{ item.image }}">
+
+                            <img src="{{MEDIA_URL}}{{ item.image_one }}">
                         </div>
                         <div class="carousel-item amber white-text" href="#two!">
-                            
-                            <img src="{{MEDIA_URL}}{{ item.image }}">
+
+                            <img src="{{MEDIA_URL}}{{ item.image_two }}">
                         </div>
                         <div class="carousel-item green white-text" href="#three!">                           
-                            <img src="{{MEDIA_URL}}{{ item.image }}">
+                            <img src="{{MEDIA_URL}}{{ item.image_three }}">
                         </div>
                         <div class="carousel-item blue white-text" href="#four!">
-                            <img src="{{MEDIA_URL}}{{ item.image }}">
+                            <img src="{{MEDIA_URL}}{{ item.image_four }}">
                         </div>
                     </div>
                 </div>
@@ -45,7 +44,55 @@
                             </span> 
                         </div>
                     </form>
-                </div>    
+                </div> 
+                <div class="card-content">
+                    <h5>{{ item.name }}</h5>
+                    <h6>{{ item.review_set.count }} reviews ({{ item.average_rating | floatformat }} average rating)</h6>
+
+                    <h5>Recent reviews</h5>
+
+                    {% if item.review_set.all %}
+                    <div>
+                        {% for review in item.review_set.all %}
+                        <div>
+                            <em>{{ review.comment }}</em>
+                            <h6>Rated {{ review.rating }} of 5 by {{ review.user_name }}</h6>
+                            <hp><a href="{% url 'one_review' review.id %}">
+                                Read more
+                            </a></p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <p>No reviews for this product yet</p>
+                    {% endif %}
+
+                    <h5>Add your review</h5>
+                    <div class="row">
+                        <form id="review" action="{% url 'add_review' item.id %}" method="post" class="col s12">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    {{ form.rating}}
+                                    <label for="rating">Choose your rating between 1 and 5</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    {{ form.comment }}
+                                    <label for="comment">Leave a comment</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <span class="input-group-btn">
+                                        <button class="button-padding waves-effect waves-light btn-small red" type="submit"><i class="material-icons left">edit</i><span>Add Review</span></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
         {% endfor %}
@@ -54,6 +101,5 @@
         </div>  
     </div>
 </div>
-
 {% endblock %}
 

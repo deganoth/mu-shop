@@ -76,8 +76,16 @@
 					<img src="{{MEDIA_URL}}{{ product.image }}">
 				</div>
 				<div class="card-content">
-					<span id="card-title-mod" class="card-title grey-text text-darken-4">{{ product.name }}</span>
-					<span><p>{{ product.price }}<a class="btn-floating halfway-fab right waves-effect waves-light red"><i class="fa fa-external-link" aria-hidden="true"></i></i></a></p></span>
+					<span id="card-title-mod" class="card-title grey-text text-darken-4">{{ product.name }}</span> 
+					<span>
+						<p>{{ product.price }}
+							<a href="{% url 'single' product.id %}" class="btn-floating halfway-fab right waves-effect waves-light red">
+								<i class="fa fa-external-link" aria-hidden="true">
+									
+								</i>
+							</a>
+						</p>
+					</span>
 				</div>
 			</div>
 		</div>

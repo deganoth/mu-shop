@@ -40,7 +40,7 @@ main {
 	}
 
 }
-	
+
 .container {
 	width: 100%;
 }
@@ -49,8 +49,12 @@ main {
 	height: 60px;
 }
 
+.product-title:hover{
+	color: grey;
+}
+
 #card-action-container {
-    padding: 16px 13px;
+	padding: 16px 13px;
 }
 
 #main-nav-background{
@@ -143,6 +147,13 @@ input {
 	border-color: #fa755a;
 }
 
+
+.carousel {
+	width: 50%;
+	margin: auto;
+}
+
+/* media queries */
 @media only screen and (max-width: 1280px) {
 	.small-hide {
 		display: none;
@@ -150,6 +161,10 @@ input {
 
 	i.left{
 		margin-right: 5px;	
+	}
+
+	.carousel {
+		width: 100%;	
 	}
 }
 

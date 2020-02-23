@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'djmoney',
     # for accepting payments for products via stripe.
     'stripe',
+    # local apps
     'accounts',
     'products',
     'home',
