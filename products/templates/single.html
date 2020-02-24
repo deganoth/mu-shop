@@ -6,10 +6,9 @@
     <div class="row">    
         {% for item in product %}
         <div class="col xl12 s12">
-
             <div class="card">
                 <div class="card-content">
-                    <h5>{{ item.name }}</h5>
+                    <h5>{{ item.name }} - <span class="price-float">{{ item.price }}</span></h5>
                 </div>
                 <div class="card-image">
                     <div class="carousel carousel-slider center">
@@ -30,12 +29,13 @@
                     </div>
                 </div>
                 <div class="card-content">
-                    <p>{{ item.description }}</p>
-                </div>
-                <div class="card-content">
-                    <p>{{ item.price }}</p>
+                    <p>{{ item.description_line_one }}</p>
+                    <p>{{ item.description_line_two }}</p>
+                    <p>{{ item.description_line_three }}</p>
+                    <p>{{ item.description_line_four }}</p>
                 </div>
                 <div class="card-action">
+                    {% if item.quantity > 0 %}
                     <form class="form-buttons" method="post" action="{% url 'add_to_cart' item.id %}">
                         {% csrf_token %}
                         <div class="input-group">
@@ -44,25 +44,47 @@
                             </span> 
                         </div>
                     </form>
+                    {% else %}
+                    <form class="form-buttons" method="post" action="{% url 'add_to_cart' item.id %}">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button class="button-padding waves-effect waves-light btn-small red" type="submit" disabled><i class="material-icons left">add_shopping_cart</i><span>Add</span></button>
+                            </span> 
+                        </div>
+                    </form>
+                    {% endif %}
+                    <form class="form-buttons" method="post" action="{% url 'add_to_compare' item.id %}">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button class="button-padding waves-effect waves-light btn-small" type="submit"><i class="material-icons left">compare_arrows</i><span>Compare</span></button>
+                            </span> 
+                        </div>
+                    </form>
+                    {% if item.quantity > 0 %}              
+                    <span class="new badge" data-badge-caption="In stock">{{ item.quantity | floatformat }}</span>
+                    {% else %}
+                    <span class="new badge red" data-badge-caption="Out of stock"></span>
+                    {% endif %}
                 </div> 
                 <div class="card-content">
-                    <h5>{{ item.name }}</h5>
-                    <h6>{{ item.review_set.count }} reviews ({{ item.average_rating | floatformat }} average rating)</h6>
-
+                    <h5>Rating</h5>
+                    <h6>{{ item.review_set.count }} 
+                        reviews 
+                        {% if item.review_set.count > 0 %}
+                        ({{ item.average_rating | floatformat }} average rating)
+                        {% endif %}
+                    </h6>
                     <h5>Recent reviews</h5>
-
-                    {% if item.review_set.all %}
-                    <div>
-                        {% for review in item.review_set.all %}
-                        <div>
-                            <em>{{ review.comment }}</em>
-                            <h6>Rated {{ review.rating }} of 5 by {{ review.user_name }}</h6>
-                            <hp><a href="{% url 'one_review' review.id %}">
-                                Read more
-                            </a></p>
-                        </div>
-                        {% endfor %}
-                    </div>
+                    {% if item.review_set.all %}    
+                    {% for review in item.review_set.all %}                      
+                    <em>{{ review.comment }}</em>
+                    <h6>Rated {{ review.rating }} of 5 by {{ review.user_name }}</h6>
+                    <hp><a href="{% url 'one_review' review.id %}">
+                        Read more
+                    </a></p>                      
+                    {% endfor %}                   
                     {% else %}
                     <p>No reviews for this product yet</p>
                     {% endif %}

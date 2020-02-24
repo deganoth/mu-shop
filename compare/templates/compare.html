@@ -9,12 +9,14 @@
             <h4>Compare Products</h4>
         </div>        
         {% for item in compare_items %}
-        <div class="col xl6 s12">
+        <div class="col xl6 l6 m12 s12">
             <ul class="collection with-header">
-                <li class="collection-header"><h4>{{ item.product.name }}</h4></li>
-                <li class="collection-item compare-image"><img class="activator" src="{{MEDIA_URL}}{{ item.product.image }}"></li>
-                <li class="collection-item">{{ item.product.price }}</li>
-                <li class="collection-item">{{ item.product.description }}</li>
+                <li class="collection-header"><h5>{{ item.product.name }} - <span class="price-float">{{ item.product.price }}</span></h5></li>
+                <li class="collection-item compare-image"><img class="activator" src="{{MEDIA_URL}}{{ item.product.image_one }}"></li>
+                <li class="collection-item">{{ item.product.description_line_one }}</li>
+                <li class="collection-item">{{ item.product.description_line_two }}</li>
+                <li class="collection-item">{{ item.product.description_line_three }}</li>
+                <li class="collection-item">{{ item.product.description_line_four }}</li>
                 <li class="collection-item">
                     <form class="form-buttons" method="post" action="{% url 'add_to_cart' item.product.id %}">
                         {% csrf_token %}

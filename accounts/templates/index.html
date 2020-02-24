@@ -8,7 +8,7 @@
 		<div class="col xl8 l12 m12">
 			<div class="card" id="card-display">
 				<div class="card-image waves-effect waves-block waves-light">
-					<img class="activator" src="{{MEDIA_URL}}{{ 'images/wide_banner.png' }}">
+					<img class="activator" src="{{MEDIA_URL}}{{ 'images/gibson_banner_two.png' }}">
 				</div>
 				<div class="card-content">
 					<span class="card-title activator grey-text text-darken-4">Gibson Les Paul<i class="material-icons right">more_vert</i></span>
@@ -26,7 +26,7 @@
 		<div class="col xl4 l6 m6 s12">
 			<div class="card">
 				<div class="card-image waves-effect waves-block waves-light">
-					<img class="activator" src="{{MEDIA_URL}}{{ 'images/narrow_banner.png' }}">
+					<img class="activator" src="{{MEDIA_URL}}{{ 'images/fender_banner.png' }}">
 				</div>
 				<div class="card-content">
 					<span class="card-title activator grey-text text-darken-4">Fender Stratocaster<i class="material-icons right">more_vert</i></span>
@@ -44,15 +44,15 @@
 		<div class="col xl4 l6 m6 s12">
 			<div class="card">
 				<div class="card-image waves-effect waves-block waves-light">
-					<img class="activator" src="{{MEDIA_URL}}{{ 'images/narrow_banner.png' }}">
+					<img class="activator" src="{{MEDIA_URL}}{{ 'images/mapex_banner.png' }}">
 				</div>
 				<div class="card-content">
-					<span class="card-title activator grey-text text-darken-4">Fender Stratocaster<i class="material-icons right">more_vert</i></span>
+					<span class="card-title activator grey-text text-darken-4">Mapex Saturn<i class="material-icons right">more_vert</i></span>
 				</div>
 				<div class="card-reveal">
 					<span class="card-title grey-text text-darken-4">An International Icon<i class="material-icons right">close</i></span>
 					<p>
-						The Stratocaster was the first Fender guitar to feature three pickups and a spring tension vibrato system, as well as being the first Fender with a contoured body.The Stratocaster's sleek, contoured body shape (officially referred to by Fender as the "Original Contour Body") differed from the flat, squared edge design of the Telecaster. The Stratocaster's double cutaways allowed players easier access to higher positions on the neck.
+						The Saturn line is constructed of maple and walnut (the oldest lines were made of basswood or mahogany instead of walnut). The kit is constructed of 6 plies of wood for a shell thickness of 5.1 millimeters. It shares a number of options with both the Mars and Orion line, but is not available with birdseye maple plies. Saturn kits come in a variety of lacquer and wrap finishes (including bursts, sparkles and fades) and come with the option of black or chrome hardware. The Saturn has become very popular, as the thinner hybrid shells provide a lower/warmer/darker fundamental tone than similar all-maple shells. Although they are priced as midrange drums, they are considered a fully professional kit and used by recording artists such as Chris Adler from Lamb of God, who recently switched over to the new Black Panther line of drums.
 					</p>
 					<p><a href="#">Buy now!</a></p>
 				</div>
@@ -73,15 +73,14 @@
 		<div class="col xl3 l6 m6 s6">
 			<div class="card">
 				<div class="card-image">
-					<img src="{{MEDIA_URL}}{{ product.image }}">
+					<img src="{{MEDIA_URL}}{{ product.image_one }}">
 				</div>
 				<div class="card-content">
 					<span id="card-title-mod" class="card-title grey-text text-darken-4">{{ product.name }}</span> 
 					<span>
 						<p>{{ product.price }}
 							<a href="{% url 'single' product.id %}" class="btn-floating halfway-fab right waves-effect waves-light red">
-								<i class="fa fa-external-link" aria-hidden="true">
-									
+								<i class="fa fa-external-link" aria-hidden="true">	
 								</i>
 							</a>
 						</p>

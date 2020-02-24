@@ -12,7 +12,7 @@ def add_to_cart(request, id):
     Add a quantity of the specified product to the cart.
     """
     quantity = 1
-    
+
     cart = request.session.get('cart', {})
     
     if id in cart:

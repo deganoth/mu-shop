@@ -11,23 +11,23 @@ def all_products(request):
 	return render(request, "products.html", {'products': products})
 
 def all_guitars(request):
-	guitars = Product.objects.filter(category=1)
+	guitars = Product.objects.filter(category_id=7)
 	return render(request, "guitars.html", {'guitars': guitars})
 
 def all_amps(request):
-	amps = Product.objects.filter(category=2)
+	amps = Product.objects.filter(category=8)
 	return render(request, "amps.html", {'amps': amps})
 
 def all_drums(request):
-	drums = Product.objects.filter(category=3)
+	drums = Product.objects.filter(category=9)
 	return render(request, "drums.html", {'drums': drums})
 
 def all_keys(request):
-	keys = Product.objects.filter(category=4)
+	keys = Product.objects.filter(category=10)
 	return render(request, "keys.html", {'keys': keys})
 
 def all_studio(request):
-	studio = Product.objects.filter(category=5)
+	studio = Product.objects.filter(category=11)
 	return render(request, "studio.html", {'studio': studio})
 
 def one_product(request, product_id):

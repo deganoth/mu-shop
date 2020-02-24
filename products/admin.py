@@ -3,16 +3,16 @@ from .models import Product, Categorie, Review
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-	list_display=('name', 'category', 'description', 'quantity', 'price')
+	list_display=('name', 'category', 'short_description', 'quantity', 'price')
 	ordering = ('name',)
-	search_fields = ('name', 'category', 'description')
+	search_fields = ('name', 'category', 'short_description')
 
 #admin.site.register(Categorie)
 @admin.register(Categorie)
 class CategorieAdmin(admin.ModelAdmin):
-	list_display=('name', 'number')
-	ordering = ('name', 'number')
-	search_fields = ('name', 'number')
+	list_display=('name', )
+	ordering = ('name', )
+	search_fields = ('name', )
 
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):

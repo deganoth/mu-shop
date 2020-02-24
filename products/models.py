@@ -6,7 +6,6 @@ import numpy as np
 
 class Categorie(models.Model):
 	name = models.CharField(max_length=254, default='')
-	number = models.CharField(max_length=254, default='')
 	description = models.TextField()
 	
 	def __str__(self):
@@ -15,7 +14,11 @@ class Categorie(models.Model):
 class Product(models.Model):
 	name = models.CharField(max_length=254, default='')
 	category = models.ForeignKey(Categorie, on_delete=models.CASCADE)
-	description = models.TextField()
+	short_description = models.CharField(max_length=254, default='')
+	description_line_one = models.CharField(max_length=254, default='')
+	description_line_two = models.CharField(max_length=254, default='')
+	description_line_three = models.CharField(max_length=254, default='')
+	description_line_four = models.CharField(max_length=254, default='')
 	price = MoneyField(max_digits=6, decimal_places=2, default_currency='EUR')
 	quantity = models.DecimalField(max_digits=6, decimal_places=2, default=0)
 	image_one = models.ImageField(upload_to='images')
@@ -26,9 +29,6 @@ class Product(models.Model):
 	def average_rating(self):
 		all_ratings = map(lambda x: x.rating, self.review_set.all())
 		return np.mean(list(all_ratings))
-
-		def __unicode__(self): 
-			return self.name
 
 	def __str__(self):
 		return self.name

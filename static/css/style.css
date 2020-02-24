@@ -38,15 +38,10 @@ main {
 		overflow:hidden;
 		opacity:0;
 	}
-
 }
 
 .container {
 	width: 100%;
-}
-
-#card-title-mod{
-	height: 60px;
 }
 
 .product-title:hover{
@@ -84,6 +79,7 @@ main {
 
 span.badge.new{
 	font-size:inherit;
+	font-weight: unset;
 }
 
 nav ul a span.badge{
@@ -98,10 +94,13 @@ nav ul a span.badge{
 	width: 100%
 }
 
-
 /* compare card styling */
 .compare-image {
 	display: flex;
+}
+
+.price-float{
+	float: none;
 }
 
 /* payment box test styling*/
@@ -168,10 +167,17 @@ input {
 	}
 }
 
+@media only screen and (min-width: 1025px){
+	.price-float{
+		float: right;
+	}
+}
+
 @media only screen and (min-width: 639px) {
 	.card.horizontal .card-image {
-		max-width: 30%;
+		max-width: 20%;
 	}
+
 }
 
 @media only screen and (max-width: 639px) {
@@ -180,6 +186,6 @@ input {
 	}
 
 	.card.horizontal .card-image {
-		max-width: 30%;
+		max-width: 20%;
 	}
 }

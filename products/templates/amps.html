@@ -10,12 +10,25 @@
                 </div>
                 <div class="card-stacked">
                     <div class="card-content card-top-head">    
-                         <a href="{% url 'single' product.id %}"><h5 class="title-item-style black-text"><span class="product-title">{{ product.name }}</span></h5></a>
+                        <a href="{% url 'single' product.id %}">
+                            <h5 class="title-item-style black-text">
+                                <span class="product-title">
+                                    {{ product.name }}
+                                    <h6>{{ product.review_set.count }} 
+                                        reviews 
+                                        {% if product.review_set.count > 0 %}
+                                        ({{ product.average_rating | floatformat }} average rating)
+                                        {% endif %}
+                                    </h6>
+                                </span>
+                            </h5>
+                        </a>
                         <h5 class="price-item-style">{{ product.price }}</h5>
                         <p>{{ product.description }}</p>    
                     </div>
                     <div class="card-action" id="card-action-container">
                         <div class="col">
+                            {% if product.quantity > 0 %}
                             <form method="post" action="{% url 'add_to_cart' product.id %}">
                                 {% csrf_token %}
                                 <div class="input-group">
@@ -24,6 +37,16 @@
                                     </span>
                                 </div>
                             </form>
+                            {% else %}
+                            <form method="post" action="{% url 'add_to_cart' product.id %}">
+                                {% csrf_token %}
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <button class="button-padding waves-effect waves-light btn-small red" type="submit" disabled><i class="material-icons left">add_shopping_cart</i><span class="tiny-hide">Add</span></button>
+                                    </span>
+                                </div>
+                            </form>
+                            {% endif %}
                         </div>
                         <div class="col xl10 l8 m6 s5">
                             <form method="post" action="{% url 'add_to_compare' product.id %}">
@@ -35,6 +58,15 @@
                                 </span>
                             </form>
                         </div>
+                        {% if product.quantity > 0 %}
+                        <div class="col xl2 l2 m2 s2">
+                            <span class="new badge" data-badge-caption="In stock">{{ product.quantity | floatformat }}</span>
+                        </div>
+                        {% else %}
+                        <div class="col xl2 l2 m2 s2">
+                            <span class="new badge red" data-badge-caption="Out of stock"></span>
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
