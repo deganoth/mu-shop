@@ -1,5 +1,6 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
+from products.models import Product
 
 def view_cart(request):
     """
@@ -29,13 +30,19 @@ def adjust_cart(request, id):
     """
     Adjust quantity of the specified product to the specified amount
     """
+    product = get_object_or_404(Product, pk=id)
     quantity = int(request.POST.get('quantity'))
     
     cart = request.session.get('cart', {})
     
+    # checks cart quantity update value against exisiting product quantities
+
     if quantity > 0:
-        cart[id] = quantity
-        messages.success(request, "Quantity successfully updated in your cart!")
+        if quantity <= product.quantity:
+            cart[id] = quantity
+            messages.success(request, "Quantity successfully updated in your cart!")
+        else:
+            messages.success(request, "Quantity unavailable!")
     else:
         cart.pop(id)
         messages.success(request, "Item successfully removed from your cart!")

@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404
+from django.contrib import messages
 from products.models import Product
 
 def cart_contents(request):
@@ -17,6 +18,7 @@ def cart_contents(request):
         sub_total = quantity * product.price
         total += quantity * product.price
         product_count += quantity
+
         cart_items.append({'id': id, 'quantity': quantity, 'product': product})
     
     return {'cart_items': cart_items, 'total': total, 'product_count': product_count}

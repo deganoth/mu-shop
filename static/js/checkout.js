@@ -1,5 +1,3 @@
-
-
 // Create a Stripe client.
 var stripe = Stripe('pk_test_eiyG5GQV9N5gDT4SGZyTsQCz00w9hz14DU');
 
