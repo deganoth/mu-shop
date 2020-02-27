@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Product, Review
@@ -7,7 +8,17 @@ import datetime
 
 # Create your views here.
 def all_products(request):
-	products = Product.objects.order_by('name')
+	product = Product.objects.order_by('name')
+	paginator = Paginator(product, 5)
+
+	page = request.GET.get('page')
+	try:
+		products = paginator.page(page)
+	except PageNotAnInteger:
+		products = paginator.page(1)
+	except EmptyPage:
+		products = paginator.page(paginator.num_pages)
+
 	return render(request, "products.html", {'products': products})
 
 def all_guitars(request):

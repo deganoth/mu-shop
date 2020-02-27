@@ -40,9 +40,18 @@ main {
 	}
 }
 
+img {
+	vertical-align: middle;
+}
+
 .container {
 	width: 100%;
 }
+
+.card.horizontal .card-image {
+	max-width: 30%;
+}
+
 
 .product-title:hover{
 	color: grey;
@@ -165,6 +174,7 @@ input {
 	.carousel {
 		width: 100%;	
 	}
+
 }
 
 @media only screen and (min-width: 1025px){
@@ -177,7 +187,6 @@ input {
 	.card.horizontal .card-image {
 		max-width: 20%;
 	}
-
 }
 
 @media only screen and (max-width: 639px) {
@@ -185,7 +194,17 @@ input {
 		display: none;
 	}
 
+	.card.horizontal{
+		display: table-row;
+	}
+
 	.card.horizontal .card-image {
-		max-width: 20%;
+		max-width: 100%;
+	}
+}
+
+@media only screen and (max-width: 800px){
+	.card.horizontal .card-image{
+		padding-top: 6%;
 	}
 }

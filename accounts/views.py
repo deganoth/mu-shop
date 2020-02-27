@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, reverse
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -9,8 +10,18 @@ from products.models import Product
 # Create your views here.
 def index(request):
 	""" Return the index.html file """
-	products = Product.objects.all()
-	return render(request, 'index.html', {'products': products})
+	product = Product.objects.order_by('name')
+	paginator = Paginator(product, 4)
+
+	page = request.GET.get('page')
+	try:
+		products = paginator.page(page)
+	except PageNotAnInteger:
+		products = paginator.page(1)
+	except EmptyPage:
+		products = paginator.page(paginator.num_pages)
+
+	return render(request, "index.html", {'products': products})
 
 @login_required
 def logout(request):	

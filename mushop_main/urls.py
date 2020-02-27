@@ -26,6 +26,11 @@ from search import urls as urls_search
 from django.views import static
 from .settings import MEDIA_ROOT
 
+# access and change admin panel details.
+admin.site.site_header = 'MuShop admin'
+admin.site.site_title = 'MuShop admin'
+admin.site.index_title = 'MuShop administration'
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', index, name="index"),
