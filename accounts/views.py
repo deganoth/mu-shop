@@ -6,11 +6,13 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm
 from accounts.forms import UserLoginForm, UserRegistrationForm, EditProfileForm
 from products.models import Product
+from home.models import BannerImage
 
 # Create your views here.
 def index(request):
 	""" Return the index.html file """
 	product = Product.objects.order_by('name')
+	banners = BannerImage.objects.all()
 	paginator = Paginator(product, 4)
 
 	page = request.GET.get('page')
@@ -21,7 +23,7 @@ def index(request):
 	except EmptyPage:
 		products = paginator.page(paginator.num_pages)
 
-	return render(request, "index.html", {'products': products})
+	return render(request, "index.html", {'products': products, 'banners': banners})
 
 @login_required
 def logout(request):	
