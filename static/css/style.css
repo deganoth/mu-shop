@@ -19,7 +19,7 @@ main {
 	background-color: #81d4fa;
 	border-radius: 2px;
 	padding: 5px 10px;
-	margin: 0 10%;
+	
 	margin-bottom: 10px;
 	animation: message-fade 0s ease-in 5s forwards;
 }

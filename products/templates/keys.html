@@ -6,7 +6,7 @@
             {% for product in keys %}
             <div class="card horizontal">
                 <div class="card-image">
-                    <img class="activator" src="{{MEDIA_URL}}{{ product.image }}">
+                    <img class="activator" src="{{MEDIA_URL}}{{ product.image_one }}">
                 </div>
                 <div class="card-stacked">
                     <div class="card-content card-top-head">    
@@ -24,20 +24,10 @@
                             </h5>
                         </a>
                         <h5 class="price-item-style">{{ product.price }}</h5>
-                        <p>{{ product.description }}</p>    
+                        <p>{{ product.short_description }}</p>    
                     </div>
                     <div class="card-action" id="card-action-container">
                         <div class="col">
-                            <form method="post" action="{% url 'add_to_cart' product.id %}">
-                                {% csrf_token %}
-                                <div class="input-group">
-                                    <span class="input-group-btn">
-                                        <button class="button-padding waves-effect waves-light btn-small red" type="submit"><i class="material-icons left">add_shopping_cart</i><span class="tiny-hide">Add</span></button>
-                                    </span>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="col xl8 l6 m7 s3">
                             {% if product.quantity > 0 %}
                             <form method="post" action="{% url 'add_to_cart' product.id %}">
                                 {% csrf_token %}

@@ -2,6 +2,18 @@
 <div class="container">
     <div class="row">
         <div class="col s12">
+            {% if search == 0 %}        
+            <div class="card ">
+                <div class="card-content">
+                    <span class="card-title">No results found for your search</span>
+                    <p>Try using brand names, product types, keywords or category names</p>
+                </div>
+            <div class="card-action">
+                <a href="{% url 'index' %}">Try again</a>
+                <a href="{% url 'products' %}">Browse Products</a>
+            </div>
+            {% else %}    
+           
             <h4>All Products</h4>
             {% for product in products %}
             <div class="card horizontal">
@@ -20,83 +32,85 @@
                                         ({{ product.average_rating | floatformat }} average rating)
                                         {% endif %}
                                     </h6>
-                                </h5>
-                            </a>
-                            <h5 class="price-item-style">{{ product.price }}</h5></span>
-                            <p>{{ product.short_description }}</p>    
-                        </div>
-                        <div class="card-action" id="card-action-container">
-                            <div class="col">
-                                {% if product.quantity > 0 %}
-                                <form method="post" action="{% url 'add_to_cart' product.id %}">
-                                    {% csrf_token %}
-                                    <div class="input-group">
-                                        <span class="input-group-btn">
-                                            <button class="button-padding waves-effect waves-light btn-small red" type="submit"><i class="material-icons left">add_shopping_cart</i><span class="tiny-hide">Add</span></button>
-                                        </span>
-                                    </div>
-                                </form>
-                                {% else %}  
-                                <form method="post" action="{% url 'add_to_cart' product.id %}">
-                                    {% csrf_token %}
-                                    <div class="input-group">
-                                        <span class="input-group-btn">
-                                            <button class="button-padding waves-effect waves-light btn-small red" type="submit" disabled><i class="material-icons left">add_shopping_cart</i><span class="tiny-hide">Add</span></button>
-                                        </span>
-                                    </div>
-                                </form>
-                                {% endif %}
-                            </div>
-                            <div class="col xl8 l6 m7 s3">
-                                <form method="post" action="{% url 'add_to_compare' product.id %}">
-                                    {% csrf_token %}
-                                    <span class="input-group">
-                                        <span class="input-group-btn">
-                                            <button class="button-padding waves-effect waves-light btn-small" type="submit"><i class="material-icons left">compare_arrows</i><span class="tiny-hide">Compare</span></button>
-                                        </span>
-                                    </span>
-                                </form>
-                            </div>
-                            {% if product.quantity > 0 %}
-                            <div class="col xl2 l2 m2 s5">
-                                <span class="new badge" data-badge-caption="In stock">{{ product.quantity | floatformat }}</span>
-                            </div>
-                            {% else %}
-                            <div class="col xl2 l2 m2 s5">
-                                <span class="new badge red" data-badge-caption="Out of stock"></span>
-                            </div>
-                            {% endif %}
-                        </div>
+                                </span>
+                            </h5>
+                        </a>
+                        <h5 class="price-item-style">{{ product.price }}</h5>
+                        <p>{{ product.short_description }}</p>    
                     </div>
-                </div>
-                {% endfor %}
-                <div class="row">
-                    <div class="col s12">
-                        {% if products.has_other_pages %}
-                        <ul class="pagination">
-                            {% if products.has_previous %}
-                            <li class="waves-effect"><a href="?page={{ products.previous_page_number }}"><i class="material-icons">chevron_left</i></a></li>
-                            {% else %}
-                            <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                    <div class="card-action" id="card-action-container">
+                        <div class="col">
+                            {% if product.quantity > 0 %}
+                            <form method="post" action="{% url 'add_to_cart' product.id %}">
+                                {% csrf_token %}
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <button class="button-padding waves-effect waves-light btn-small red" type="submit"><i class="material-icons left">add_shopping_cart</i><span class="tiny-hide">Add</span></button>
+                                    </span>
+                                </div>
+                            </form>
+                            {% else %}  
+                            <form method="post" action="{% url 'add_to_cart' product.id %}">
+                                {% csrf_token %}
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <button class="button-padding waves-effect waves-light btn-small red" type="submit" disabled><i class="material-icons left">add_shopping_cart</i><span class="tiny-hide">Add</span></button>
+                                    </span>
+                                </div>
+                            </form>
                             {% endif %}
-                            {% for i in products.paginator.page_range %}
-                                {% if products.number == i %}
-                                <li class="active red"><a href="#!">{{ i }}</a></li>
-                                {% else %}
-                                <li class="waves-effect"><a href="?page={{ i }}">{{ i }}</a></li>
-                                {% endif %}
-                            {% endfor %}
-                            {% if products.has_next %}
-                            <li class="waves-effect"><a href="?page={{ products.next_page_number }}"><i class="material-icons">chevron_right</i></a></li>
-                            {% else %}
-                            <li class="disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-                            {% endif %}
-                        </ul>
+                        </div>
+                        <div class="col xl8 l6 m7 s3">
+                            <form method="post" action="{% url 'add_to_compare' product.id %}">
+                                {% csrf_token %}
+                                <span class="input-group">
+                                    <span class="input-group-btn">
+                                        <button class="button-padding waves-effect waves-light btn-small" type="submit"><i class="material-icons left">compare_arrows</i><span class="tiny-hide">Compare</span></button>
+                                    </span>
+                                </span>
+                            </form>
+                        </div>
+                        {% if product.quantity > 0 %}
+                        <div class="col xl2 l2 m2 s5">
+                            <span class="new badge" data-badge-caption="In stock">{{ product.quantity | floatformat }}</span>
+                        </div>
+                        {% else %}
+                        <div class="col xl2 l2 m2 s5">
+                            <span class="new badge red" data-badge-caption="Out of stock"></span>
+                        </div>
                         {% endif %}
                     </div>
                 </div>
             </div>
+            {% endfor %}
+            <div class="row">
+                <div class="col s12">
+                    {% if products.has_other_pages %}
+                    <ul class="pagination">
+                        {% if products.has_previous %}
+                        <li class="waves-effect"><a href="?page={{ products.previous_page_number }}"><i class="material-icons">chevron_left</i></a></li>
+                        {% else %}
+                        <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                        {% endif %}
+                        {% for i in products.paginator.page_range %}
+                        {% if products.number == i %}
+                        <li class="active red"><a href="#!">{{ i }}</a></li>
+                        {% else %}
+                        <li class="waves-effect"><a href="?page={{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                        {% endfor %}
+                        {% if products.has_next %}
+                        <li class="waves-effect"><a href="?page={{ products.next_page_number }}"><i class="material-icons">chevron_right</i></a></li>
+                        {% else %}
+                        <li class="disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+                        {% endif %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
         </div>
+        {% endif %}
     </div>
-    {% endblock %}
+</div>
+{% endblock %}
 
