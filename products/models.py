@@ -37,7 +37,7 @@ class Product(models.Model):
 class Review(models.Model):
 
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    pub_date = models.DateTimeField('date published')	
+    pub_date = models.DateTimeField('date published', null=True)	
     user_name = models.ForeignKey(User, on_delete=models.CASCADE)
     comment = models.TextField()
     rating = models.PositiveSmallIntegerField(validators=[MaxValueValidator(6),MinValueValidator(1)])

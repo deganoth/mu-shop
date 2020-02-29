@@ -1,0 +1,1 @@
+web: gunicorn mushop_main.wsgi:application
