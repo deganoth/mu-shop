@@ -13,6 +13,7 @@ class Categorie(models.Model):
 		
 class Product(models.Model):
 	name = models.CharField(max_length=254, default='')
+	name_overflow = models.CharField(max_length=254, default='')
 	category = models.ForeignKey(Categorie, on_delete=models.CASCADE)
 	short_description = models.CharField(max_length=254, default='')
 	description_line_one = models.CharField(max_length=254, default='')

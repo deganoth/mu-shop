@@ -1,16 +1,11 @@
 {% extends 'base.html' %}
-
 {% load bootstrap_tags %}
-
-{% block page_title %}Registration Page{% endblock %}
-
-{% block page_heading %}User Registration{% endblock %}
-
 {% block content %}
 
 <div class="container">
 	<div class="row">
 		<div class="col s12">
+			<h4>Register your account</h4>
 			<p>If you already have an account, you can <a href="{% url 'login' %}">sign in</a></p>
 			<form method="POST">
 				{% csrf_token %}

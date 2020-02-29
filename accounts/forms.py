@@ -38,8 +38,6 @@ class UserRegistrationForm(UserCreationForm):
 		return password2
 
 class EditProfileForm(UserChangeForm):
-    template_name='/something/else'
-
     class Meta:
         model = User
         fields = (
