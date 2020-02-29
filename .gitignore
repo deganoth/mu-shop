@@ -1,3 +1,3 @@
 *db.sqlite3
-*__pychache__
+find . -name "*.pyc" -exec git rm -f "{}" \;
 env.py
