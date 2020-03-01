@@ -1,18 +1,28 @@
 {% extends 'base.html' %}
-
-{% load bootstrap_tags %}
-
-{% block page_title %}{{ user }}'s Profile{% endblock %}
-
-{% block page_heading %}{{ user }}'s Profile{% endblock %}
-
 {% block content %}
 <div class="container">
 	<div class="row">
 		<div class="col s12">
+			<h4>Edit Profile</h4>
 			<form method="post">
 				{% csrf_token %}
-				{{ form | as_bootstrap }}
+				<label for="id_username">Username</label>
+				{{ form.username }}
+
+				<label for="id_email">Email</label>
+				{{ form.email }}
+
+				<label for="id_first_name">First Name</label>
+				{{ form.first_name }}
+
+				<label for="id_last_name">Last Name</label>
+				{{ form.last_name }}
+
+				{% if form.errors %}
+				<div class="user-message">
+					{{ form.errors }}
+				</div>
+				{% endif %}
 				<span class="input-group-btn">
 					<button class="button-padding waves-effect waves-light btn-small" type="submit"><i class="material-icons left">done</i><span class="tiny-hide">Submit Changes</span></button>
 				</span>	
