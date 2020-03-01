@@ -22,10 +22,10 @@ class Product(models.Model):
 	description_line_four = models.CharField(max_length=254, default='')
 	price = MoneyField(max_digits=6, decimal_places=2, default_currency='EUR')
 	quantity = models.DecimalField(max_digits=6, decimal_places=2, default=0)
-	image_one = models.ImageField(upload_to='images')
-	image_two = models.ImageField(upload_to='images')
-	image_three = models.ImageField(upload_to='images')
-	image_four = models.ImageField(upload_to='images')
+	image_one = models.ImageField(upload_to='images', default='default.jpg')
+	image_two = models.ImageField(upload_to='images', default='default.jpg')
+	image_three = models.ImageField(upload_to='images', default='default.jpg')
+	image_four = models.ImageField(upload_to='images', default='default.jpg')
 
 	def average_rating(self):
 		all_ratings = map(lambda x: x.rating, self.review_set.all())
