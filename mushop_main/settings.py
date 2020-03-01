@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     'cart',
     'compare',
     'checkout',
+    # cloud based static file storage
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -101,7 +103,10 @@ if "DATABASE_URL" in os.environ:
 else:
     print("Postgres URL was found! Using Posgres!.")
     DATABASES = {
-    'default':dj_database_url.parse(os.environ.get('DATABASE_URL'))
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
 }
 
 
@@ -141,7 +146,23 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
+# AWS location information
+
+# this allows static files to exist for the time set
+AWS_S3_OBJECT_PARAMENTERS = {
+    'Expires': 'Thu, 31  Dec 2099 20:00:00 GMT',
+    'CacheControl': 'max-age=95608000',
+}
+
+AWS_STORAGE_BUCKET_NAME = 'mu-shop'
+AWS_S3_REGION_NAME = 'eu-west-1'
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+
+AWS_S3_CUSTOM_DOMAIN = "%s.s3.amazonaws.com" % AWS_STORAGE_BUCKET_NAME
+
+STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+STATICFILES_LOCATION = 'static'
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
@@ -149,9 +170,11 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-MEDIA_URL = '/media/'
+MEDIAFILES_LOCATION = 'media'
+DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+
+MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE')
@@ -168,6 +191,7 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
+MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',

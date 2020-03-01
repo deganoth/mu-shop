@@ -1,3 +1,7 @@
-*db.sqlite3
-find . -name "*.pyc" -exec git rm -f "{}" \;
+*.sqlite3
+__pycache__
+.c9
 env.py
+*.png
+static/
+media/
