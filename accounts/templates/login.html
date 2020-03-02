@@ -5,6 +5,8 @@
 	<div class="row">
 		<div class="col s12">
 			<h4>Login</h4>
+			<p>If you don't have an account, please click <a href="{% url 'registration' %}">here</a> to register.</p>
+			
 			<form method="POST">
 				{% csrf_token %}
 				{{ login_form | as_bootstrap }}

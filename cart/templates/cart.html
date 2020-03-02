@@ -27,13 +27,15 @@
                                     {% csrf_token %}
                                     <div class="form-group">
                                         <label for="exampleInputAmount" class="sr-only">New Qty</label>
-                                        <div class="col xl8 l6 m6 s12 input-group">
+                                        <div class="col xl2 l6 m6 s12 input-group">
                                             <input name="quantity" min="0" max="999" type="number" class="form-control" required>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary">
-                                        <span class="glyphicon glyphicon-edit" aria-hidden="true">Update</span>
-                                    </button>
+                                    <span class="input-group-btn">
+                                        <div class="col xl2 l6 m6 s12 input-group">
+                                            <button class="button-padding waves-effect waves-light btn-small" type="submit"><i class="material-icons left">add</i></button>
+                                        </div>
+                                    </span>
                                 </form>
                             </td>   
                         </tr>
