@@ -180,16 +180,19 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE')
 STRIPE_SECRET = os.getenv('STRIPE_SECRET')
 
-# console testing of email responses
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+# email sending using sendgrid
+SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY")
 
-# gmail based email responses
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.gmail.com"
+# Toggle sandbox mode (when running in DEBUG mode)
+SENDGRID_SANDBOX_MODE_IN_DEBUG=False
+# echo to stdout or any other file-like object that is passed to the backend via the stream kwarg.
+SENDGRID_ECHO_TO_STDOUT=True
+
+EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+
+EMAIL_HOST = "smtp.sendgrid.net"
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 
