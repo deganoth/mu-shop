@@ -22,7 +22,7 @@ def all_products(request):
 	return render(request, "products.html", {'products': products})
 
 def all_guitars(request):
-	guitars = Product.objects.filter(category_id=2)
+	guitars = Product.objects.filter(category=2)
 	return render(request, "guitars.html", {'guitars': guitars})
 
 def all_amps(request):

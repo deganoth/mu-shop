@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'checkout',
     # cloud based static file storage
     'storages',
+    'mathfilters',
 ]
 
 MIDDLEWARE = [

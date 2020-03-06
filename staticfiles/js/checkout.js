@@ -27,7 +27,7 @@ var style = {
 var cardNumber = elements.create('cardNumber', {style: style});
 var cardExpiry = elements.create('cardExpiry', {style: style});
 var cardCvc = elements.create('cardCvc', {style: style});
-var postalCode = elements.create('postalCode', {style: style});
+var postalCode = elements.create('postalCode', {style: style, placeholder: 'D10 X103'});
 
 // IMPORTANT! target the bootstrap and django created id names and chnage them to the stripe accepted div id names.
 // Stripe id names for card elements must be in a <div> html element.  

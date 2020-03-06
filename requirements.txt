@@ -12,6 +12,7 @@ django-forms-bootstrap==3.1.0
 django-generic-positions==0.2.3
 django-hvad==1.8.0
 django-libs==2.0.2
+django-mathfilters==1.0.0
 django-model-utils==3.2.0
 django-money==1.0
 django-review==1.10.0

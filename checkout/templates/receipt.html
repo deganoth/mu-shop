@@ -1,0 +1,44 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col s12">
+      {% regroup details by order_id as order_list %}
+      {% for item in order_list %}
+      {% if forloop.last %}
+      <h4>Thank you for you purchase!</h4>
+      <div>
+        <h4 class="order-id-style">Order ID - {{ item.grouper }}</h4>
+      </div>
+      <table id="countit">
+        <thead>
+          <tr>
+            <th>Receipt item ID</th>
+            <th>Product Name</th>
+            <th>Qty</th>
+            <th>Price</th>
+            <th>Sub Total</th>
+          </tr>
+        </thead>
+        <tboby>
+          {% endif %}
+          <tr>
+            {% if forloop.last %}
+            {% for object in item.list %}
+            <tr>
+              <td>{{ object.id }}</td>
+              <td>{{ object.product }}</td>
+              <td>{{ object.quantity }}</td>
+              <td>{{ object.product.price }}</td>
+              <td class="count-me">{{ object.total }}</td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+          </tr>
+          {% endfor %}
+        </tboby>
+      </table>
+    </div>
+  </div>
+</div>
+
+
