@@ -11,15 +11,18 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import socket
 
 if os.path.exists('env.py'):
     import env
 import dj_database_url
 
-if os.environ.get('DEVELOPMENT'):
-    development = True
+HOSTNAME = socket.gethostname()
+
+if HOSTNAME == 'mu-shop.herokuapp.com':
+    DEBUG = False
 else:
-    development = False
+    DEBUG = True
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -31,11 +34,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
 ALLOWED_HOSTS = ['127.0.0.1', 'mu-shop.herokuapp.com']
-
 
 # Application definition
 
@@ -99,9 +98,16 @@ WSGI_APPLICATION = 'mushop_main.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
+# print("Postgres URL was not found! Using SQLite3!.")
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 
-if "DATABASE_URL" in os.environ:
+if HOSTNAME == 'mu-shop.herokuapp.com':
     print("Postgres URL was found! Using Posgres!.")
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
