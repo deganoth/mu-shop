@@ -81,13 +81,12 @@ def checkout(request):
 
 def checkout_complete(request):
     details = OrderLineItem.objects.order_by('order_id')
-
     emails = User.objects.filter(is_active=True).values_list('email', flat=True)
 
-    subject = 'Subject'
+    subject = 'MuShop purchase'
     html_message = render_to_string('receipt.html', {'details': details})
     plain_message = strip_tags(html_message)
-    from_email = 'From <from@example.com>'
+    from_email = 'From <admin@mu-shop.herokuapp.com>'
     to = request.user.email
 
     mail.send_mail(subject, plain_message, from_email, [to], html_message=html_message)
