@@ -5,7 +5,6 @@ urlpatterns = [
     url(r'^$', all_products, name='products'),
     url(r'^(?P<product_id>\d+)/$', one_product, name='single'),
     url(r'^(?P<product_id>\d+)/add_review/$', add_review, name='add_review'),
-    url(r'^categories/', all_guitars, name='guitars'),
     url(r'^guitars/', all_guitars, name='guitars'),
     url(r'^amps/', all_amps, name='amps'),
     url(r'^drums/', all_drums, name='drums'),

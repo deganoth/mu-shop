@@ -15,6 +15,7 @@ import socket
 
 if os.path.exists('env.py'):
     import env
+    
 import dj_database_url
 
 HOSTNAME = socket.gethostname()
@@ -32,7 +33,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "_ttl3b^kl&e&u_+msxb#!x1jo_%dbrts1vmqvqhdgizb687cg#"
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 ALLOWED_HOSTS = ['127.0.0.1', 'mu-shop.herokuapp.com']
 
@@ -59,6 +60,7 @@ INSTALLED_APPS = [
     'checkout',
     # cloud based static file storage
     'storages',
+    # for exporting html pages as pdf downloads
 ]
 
 MIDDLEWARE = [
@@ -69,7 +71,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
 
 ROOT_URLCONF = 'mushop_main.urls'
@@ -100,11 +101,9 @@ WSGI_APPLICATION = 'mushop_main.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 # print("Postgres URL was not found! Using SQLite3!.")
 # DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
 #     }
-# }
+
 
 
 if HOSTNAME == 'mu-shop.herokuapp.com':
