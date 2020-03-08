@@ -1,5 +1,6 @@
 
 */static/
+*/staticfiles/
 */media/
 */__pycache__/
 *.sqlite3
