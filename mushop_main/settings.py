@@ -106,7 +106,7 @@ WSGI_APPLICATION = 'mushop_main.wsgi.application'
 
 
 
-if HOSTNAME == 'mu-shop.herokuapp.com':
+if "DATABASE_URL" in os.environ:
     print("Postgres URL was found! Using Posgres!.")
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
