@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 from .forms import OrderForm
 from.models import Order, OrderLineItem
 from products.models import Product
+from easy_pdf.views import PDFTemplateView
 import os
 import stripe
 
@@ -38,7 +39,6 @@ def checkout(request):
                     product.save()    
 
                 total = total + quantity * product.price 
-                receipt_total = total - quantity * product.price
                 
                 # converting total to a readable format for stripe. Required for use with MoneyField.
                 # the translate method searches through the string for any reference of the selected symbol. 
@@ -86,7 +86,7 @@ def checkout_complete(request):
     subject = 'MuShop purchase'
     html_message = render_to_string('receipt.html', {'details': details})
     plain_message = strip_tags(html_message)
-    from_email = 'From <admin@mu-shop.herokuapp.com>'
+    from_email = '<admin@mu-shop.herokuapp.com>'
     to = request.user.email
 
     mail.send_mail(subject, plain_message, from_email, [to], html_message=html_message)

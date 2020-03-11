@@ -7,7 +7,9 @@ from .models import Categorie, Review, Product
 class TestProductModel(TestCase):
 	def test_product_has_average_rating(self):
 		product = Product()
+		product.name="Create a Name"
 		self.assertTrue(product.average_rating()) 
+		self.assertTrue("Create a Name", str(product))
 
 class TestCategorieModel(TestCase):
 	def test_category_name_as_a_string(self):
