@@ -15,37 +15,37 @@ Front end functionality is flexible in appearance by design. Components resize t
 | Post Code | Any 5 digits will do |
 
 ### Feature
-**Home page**
+##### Home page
 This is a summary page designed to tell the customer about news and current activities of the shop. Banner ads appear featuring product highlights or events, and new products are listed below.
 
-**Pagination**
+##### Pagination
 This feature is attached to the Product model. For flexibility purposes, different product quantities are shown per page on the home page, and the products page. It makes use of the Paginator function from Django. It sets the number of items per page and allows the user to click through each page until the database has been cycled through. On the home page, 4 products must be visible before pagination becomes available. On the product pages (All products for example), 5 products are shown before pagination is visible. This can be changed based on the database size.
 
-**Stock counter** 
+##### Stock counter 
 Available on each product is a stock quantity counter. It displays current stock quantities available of that product. If a quantity of the product is purchased, the stock level changes to reflect it. When the quantity reaches 0, the "Add to Cart" button is disabled. This protects the shop and customer. The quantity check is performed on each product in the html template with the Django Templating language. 
 
-**Search Function**
+##### Search Function
 Available in the navbar, this function searches through each product model field. It takes an input from the user, and checks each field against this input. If the input value is present in any field, a result is shown. If not, a page declaring "0 results found" is shown offering the user to browse or try to search again.
 
-**Product display**
+##### Product display
 The navbar offers different product model display options. As the model is split into categories, each category is available to view by selecting the name from the navbar. This is achieved by filtering by category in the product views. In the admin panel, categories can be created. Each category has an associated number. Each product in turn has an associated category. The category model is paired with the product model by setting the category field in the product to the a Foreign Key, the Category model. This allows filtering of the product models through the category field.
 
-**Reviews**
+##### Reviews
 A feature that allows the customer to rate and review any product in the database. Reviews are stored in the admin section. Each review is presented at the bottom of the single product template. An average rating is displayed also. This is based on a calculation that counts the number of ratings present, and gets the average number. This is then presented in the review section as a float. Each review can be expanded by clicking the "read more" link below the comment. This leads to a full review page for each review.
 
-**Compare function**
+##### Compare function
 This allows users to compare a number of products in detail. It makes use of the browser session context to add only one product of each type to the compare tab. This is then updated visually with a counter that is colour associated with the compare button on each product. When in the compare page, each product is displayed in detail. To do this, a contexts python file must be created in Django, along with a context processor in the settings python file middleware section. This allows Django to create lists in the browser session. In the contexts python file function, a reference to the selected product is created, along with a list and quantity variable. These updated as products are added.
 
-**Cart function**
+##### Cart function
 Much like the compare function, the cart makes use of a context python file for creating lists in the browser session, however in the cart function, each product has a quantity that can be updated on the cart template page. A check is in place to make sure the user cannot add a quantity greater than the available quantity in the product model. This model is required to fill the checkout template with the required product quantities and information. 
 
-**User accounts**
+##### User accounts
 Using the built in Django Authorisation and Authentication feature, user accounts were created. These make use of the custom backends available by specifying "AUTHENTICATION BACKENDS" in the settings. python file to be the associated models. Custom forms and and views with form validation were required to verify user details. To allow a user to sign in with both username and password, a backends python file was created. This sets the username to the user email, allowing sign in with either. This is registered in the settings python file also. Custom styled user account templates were created to keep the user associated with the front end shop. The ability for the user to edit their profile, or reset their password are also available. A request is made via the user profile, or login page to reset the user password. A password reset page loads requesting the user email. Once entered and sent, a custom email with a unique token is received by the user to reset their password. This is generated in the url_reset.py file using python regular expressions.
 
-**Stripe Payments**
+##### Stripe Payments
 As a checkout demo, Stripe payments has been added. This requires a Stripe account, and for the current version of stripe (V3), [Stripe Elements]. Both a custom JavaScript file and html form with specific tags are required for this to function. Once an account is setup with Stripe, a Test Publishable key and Secret Key are provided. The secret key must be set as an environment variable in the Django backend to ensure payment security. It along with the stripe app are registered in the settings python file . The publishable key must be present in the custom JavaScript file for the checkout to complete. Security issues are discussed here - [Stripe Elements Publishable Key Security Query] - Within this file, card elements are created and "mounted" in the checkout template by referencing div id names specific to each element. A unique "Token" is then created as the transaction takes place. It is set in a hidden div on the card details form. This is injected via the Django checkout views file. Once complete, a payment is sent to stripe, and a receipt page loads in the MuShop app
 
-**Email Receipt**
+##### Email Receipt
 Making use of [Sendgrid], A copy of the receipt page is sent to the user account email. Send grid was used as an alternative to gmail, as there is a known bug with Django and the smtp server of gmail. It is implemented in much the same way in the settings python file. Differences are the need for an API key from sendgrid via the sendgrid admin panel. Additionally, two sendgrid options must be declared. Sandbox mode must be False, so emails send, and "SENGRID_ECHO" must be set to false. This stops any other output being sent other than the browser.
  
 ### Technologies Used for Development
@@ -173,13 +173,13 @@ git push heroku master
 - [Stripe Payments with Django Tutorial]
 - [Using Google for Django Storages]
 ### Credits
-My Mentor, [Spencer Barriball] for showing me the ropes, and being a great teacher.
-[Code Institute] - For making this possible.
-[Vitor Freitas] - Amazing Django Tutorials
-[Max Goodridge] - Django Maestro
-[Jose A Dianes] - Extremely well made Django Review Model Tutorial
+- My Mentor, [Spencer Barriball] for showing me the ropes, and being a great teacher.
+- [Code Institute] - For making this possible.
+- [Vitor Freitas] - Amazing Django Tutorials
+- [Max Goodridge] - Django Maestro
+- [Jose A Dianes] - Extremely well made Django Review Model Tutorial
 
-**End of doc.**
+**Free Software, Hell Yeah!**
     
    [Sendgrid]:<https://sendgrid.com/>
    [Windows 10]:<https://docs.microsoft.com/en-us/windows/apps/>    
