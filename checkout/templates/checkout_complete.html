@@ -17,16 +17,13 @@
             <th>Sub Total</th>
           </tr>
         </thead>
-        <tboby>
+        <tbody>
           {% for item in order_list %}
-          <tr>
+         
             {% if forloop.last %}
             {% for object in item.list %}
             {% if forloop.last %}
-            <h6>Thank you {{ object.order.full_name }} for you purchase!</h6>
-            <div>
-              <h6 class="order-id-style">Order ID - {{ object.order.id }}</h6>
-            </div>
+            <caption class="order-id-style">Thank you {{ object.order.full_name }} for you purchase! Order ID - {{ object.order.id }}</caption>
             {% endif %}
             <tr>
               <td>{{ object.id }}</td>
@@ -37,9 +34,9 @@
             </tr>
             {% endfor %}
             {% endif %}
-          </tr>
+         
           {% endfor %}
-        </tboby>
+        </tbody>
       </table>
     </div>
   </div>

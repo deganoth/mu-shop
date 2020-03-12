@@ -70,6 +70,10 @@
                     <div class="col xl2 l2 m2 s5">
                         <span class="new badge" data-badge-caption="In stock">{{ item.quantity | floatformat }}</span>
                     </div>
+                    {% elif product.quantity > 0 %}
+                    <div class="col xl2 l2 m2 s5">
+                        <span class="new badge orange" data-badge-caption="Low stock">{{ product.quantity | floatformat }}</span>
+                    </div>
                     {% else %}
                     <div class="col xl2 l2 m2 s5">
                         <span class="new badge red" data-badge-caption="Out of stock"></span>
@@ -91,7 +95,7 @@
                     <h6>Rated {{ review.rating }} of 5 by {{ review.user_name }}</h6>
                     <hp><a href="{% url 'one_review' review.id %}">
                         Read more
-                    </a></p>                      
+                    </a></hp>                      
                     {% endfor %}                   
                     {% else %}
                     <p>No reviews for this product yet</p>
@@ -127,7 +131,7 @@
         </div>
         {% endfor %}
         <div class="col s12">
-            <a href="{% url 'checkout' %}" class="btn waves-effect waves-light button-margin-top" role="button"></span><i class="material-icons right">done</i>Checkout</a>
+            <a href="{% url 'checkout' %}" class="btn waves-effect waves-light button-margin-top" role="button"><i class="material-icons right">done</i>Checkout</a>
         </div>  
     </div>
 </div>

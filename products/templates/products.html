@@ -70,9 +70,13 @@
                                 </span>
                             </form>
                         </div>
-                        {% if product.quantity > 0 %}
+                        {% if product.quantity > 20 %}
                         <div class="col xl2 l2 m2 s5">
                             <span class="new badge" data-badge-caption="In stock">{{ product.quantity | floatformat }}</span>
+                        </div>
+                        {% elif product.quantity > 0 %}
+                        <div class="col xl2 l2 m2 s5">
+                            <span class="new badge orange" data-badge-caption="Low stock">{{ product.quantity | floatformat }}</span>
                         </div>
                         {% else %}
                         <div class="col xl2 l2 m2 s5">
