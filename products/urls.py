@@ -1,5 +1,15 @@
 from django.conf.urls import url, include
-from .views import all_products, all_guitars, all_amps, all_drums,  all_keys, all_studio, one_product, all_reviews, one_review, add_review
+from .views import all_products 
+from .views import all_guitars
+from .views import all_amps
+from .views import all_drums
+from .views import all_keys
+from .views import all_studio
+from .views import one_product
+from .views import all_reviews
+from .views import one_review
+from .views import add_review
+
 
 urlpatterns = [
     url(r'^$', all_products, name='products'),
@@ -12,4 +22,4 @@ urlpatterns = [
     url(r'^studio/', all_studio, name='studio'),
     url(r'^reviews/', all_reviews, name='all_reviews'),
     url(r'^review/(?P<review_id>\d+)/$', one_review, name='one_review'),
-    ]   
+    ]

@@ -12,11 +12,10 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 import socket
+import dj_database_url
 
 if os.path.exists('env.py'):
     import env
-    
-import dj_database_url
 
 HOSTNAME = socket.gethostname()
 
@@ -60,7 +59,8 @@ INSTALLED_APPS = [
     'checkout',
     # cloud based static file storage
     'storages',
-    # for exporting html pages as pdf downloads
+    # checking template validity
+    'django_template_check'
 ]
 
 MIDDLEWARE = [
@@ -104,22 +104,20 @@ WSGI_APPLICATION = 'mushop_main.wsgi.application'
 #         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
 #     }
 
-
-
 if "DATABASE_URL" in os.environ:
     print("Postgres URL was found! Using Posgres!.")
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
-    
+
 else:
     print("Postgres URL was not found! Using SQLite3!.")
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
     }
-}
 
 
 # Password validation
@@ -195,9 +193,9 @@ STRIPE_SECRET = os.getenv('STRIPE_SECRET')
 # email sending using sendgrid
 SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY")
 # Toggle sandbox mode (when running in DEBUG mode)
-SENDGRID_SANDBOX_MODE_IN_DEBUG=False
+SENDGRID_SANDBOX_MODE_IN_DEBUG = False
 # echo to stdout or any other file-like object that is passed to the backend via the stream kwarg.
-SENDGRID_ECHO_TO_STDOUT=False
+SENDGRID_ECHO_TO_STDOUT = False
 
 EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
 EMAIL_HOST = "smtp.sendgrid.net"
@@ -210,4 +208,3 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'accounts.backends.EmailAuth'
 ]
-
