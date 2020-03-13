@@ -2,6 +2,7 @@ boto3==1.12.16
 botocore==1.15.16
 certifi==2019.9.11
 chardet==3.0.4
+circleci==1.2.2
 Click==7.0
 coverage==5.0.3
 dj-database-url==0.5.0
@@ -11,8 +12,11 @@ django-forms-bootstrap==3.1.0
 django-money==1.0
 django-sendgrid-v5==0.8.1
 django-storages==1.9.1
+django-template-check==0.3.1
 dnspython==1.16.0
 docutils==0.15.2
+Flask==1.1.1
+Flask-PyMongo==2.3.0
 future==0.18.2
 gunicorn==20.0.4
 heroku==0.1.4
@@ -28,6 +32,7 @@ Pillow==7.0.0
 pipenv==2018.11.26
 psycopg2==2.8.4
 py-moneyed==0.8.0
+pymongo==3.10.0
 PyPDF2==1.26.0
 python-dateutil==2.8.1
 python-dotenv==0.10.5
@@ -44,5 +49,6 @@ urllib3==1.25.6
 virtualenv==16.7.9
 virtualenv-clone==0.5.3
 webencodings==0.5.1
+Werkzeug==0.16.0
 whitenoise==5.0.1
 xhtml2pdf==0.2.4
