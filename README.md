@@ -1,5 +1,6 @@
 # MuShop - Ecommerce platform
 ### [MuShop on Heroku]
+***Pyhon v3.8 required***
 ### What is this?
 MuShop is a Django based online music shop. It makes use of Stripe for taking payments(test payments only), Amazon S3 for cloud based file storage, and Heroku for app and database hosting. It provides the user the ability to create, edit or delete products, manage orders, monitor reviews and manage users. The customer can browse,  purchase products and receive a receipt, leave product reviews and compare products .
 ### UX
